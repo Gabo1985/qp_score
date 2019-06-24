@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="calificador">
+    <wb-module deploy-name="qp_score">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="calificador"/>
-        <property name="java-output-path" value="/calificador/build/classes"/>
+        <property name="java-output-path" value="/qp_score/build/classes"/>
+        <property name="context-root" value="qp_score"/>
     </wb-module>
 </project-modules>
