@@ -1,77 +1,96 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>Untitled Document</title>
+<title>SCORE CALIFICACION</title>
+
+<link rel="stylesheet" type="text/css" href="css/calificador.css">
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
 <script>
-function showDiv(n)
-{
-document.getElementById("div"+n).style.display = 'block'
-return false;
-}
-
-function hideDiv(n)
-{
-for (x=1; x<=10; x++)
-{
-document.getElementById("div"+x).style.display = 'none'
-}
-document.getElementById(n).style.display = 'block'
-return false;
-
-}
-
-function toggleDiv(id)
-{
-	for (x=1; x<=3; x++)
-	{
-		document.getElementById("div"+x).style.display = 'none';
+	function showDiv(n) {
+		document.getElementById("div" + n).style.display = 'block'
+		return false;
 	}
-	
-	document.getElementById(id).style.display = 'block';
-}
 
+	function hideDiv(n) {
+		for (x = 1; x <= 10; x++) {
+			document.getElementById("div" + x).style.display = 'none'
+		}
+		document.getElementById(n).style.display = 'block'
+		return false;
 
+	}
+
+	function toggleDiv(id) {
+		for (x = 1; x <= 3; x++) {
+			document.getElementById("div" + x).style.display = 'none';
+		}
+
+		document.getElementById(id).style.display = 'block';
+	}
+
+	function returnCalificacion() {
+		toggleDiv("div1");
+	}
 </script>
 
 </head>
 
 <body>
 
-<table width="50%" border="1" cellspacing="0" cellpadding="0">
-<tr>
-<td>
-<a href="#" onClick="toggleDiv('div1');return false;">show div 1</a> &nbsp;
-<a href="#" onClick="toggleDiv('div2');return false;">show div 2</a> &nbsp;
-<a href="#" onClick="toggleDiv('div3');return false;">show div 3</a>
-</td>
-</tr>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" text-align:center;>
+		<tr>
+			<td>
 
-<tr>
-<td>
+				<div id="div1">
+					<table border=0 width=100% cellspacing="0" cellpadding="0" text-align:center;>
+						<tr>
+							<td><button
+									onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">EXCELENTE</button></td>
+							<td><button
+									onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">MUY
+									BUENO</button></td>
+							<td><button
+									onclick="toggleDiv('div2');setTimeout(returnCalificacion, 5000);">BUENO</button></td>
+							<td><button
+									onclick="toggleDiv('div2');setTimeout(returnCalificacion, 5000);">REGULAR</button></td>
+							<td><button
+									onclick="toggleDiv('div2');setTimeout(returnCalificacion, 5000);">MALO</button></td>
+						</tr>
+					</table>
+				</div>
 
-<div id="div1" style="display: none">
-<table border=0 width=25% cellspacing="0" cellpadding="0">
-<tr><td>this is div 1 contects</td></tr>
-</table>
-</div>
+				<div id="div2" style="display: none">
+					<table border=0 width=100% cellspacing="0" cellpadding="0" text-align:center;>
+						<tr>
+							<td>¿SE SIENTE SATISFECHO CON NUESTRA ATENCIÓN?</td>
+						</tr>
+						<tr>
+							<td><button
+									onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">SI</button></td>
+						</tr>
+						<tr>
+					<td><button
+								onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">NO</button></td>
+						</tr>
+						</table>
+				</div>
 
-<div id="div2" style="display: none">
-<table border=0 width=25% cellspacing="0" cellpadding="0">
-<tr><td>this is div 2 contects</td></tr>
-</table>
-</div>
 
+				<div id="div3" style="display: none">
+					<table border=0 width=100% cellspacing="0" cellpadding="0" text-align:center;>
+						<tr>
+							<td>GRACIAS POR CALIFICAR NUESTRO SERVICIO</td>
+						</tr>
+						<tr>
+							<td>ES UN PLACER ATENDERLO</td>
+						</tr>
+					</table>
+				</div>
 
-<div id="div3" style="display: none">
-<table border=0 width=25% cellspacing="0" cellpadding="0">
-<tr><td>this is div 3 contects</td></tr>
-</table>
-</div>
-
-</td>
-</tr>
-</table>
+			</td>
+		</tr>
+	</table>
 
 </body>
 </html>

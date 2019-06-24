@@ -1,0 +1,25 @@
+@CHARSET "ISO-8859-1";
+	
+#div1 {
+  background-image:url("../images/calificacion.png");
+  background-repeat: no-repeat;  
+  width:auto;
+  height:auto;
+  margin: auto; 
+}
+#div2 {
+  background-image:url("../images/pregunta.png");
+  background-repeat: no-repeat;  
+  width:100%;
+  height:auto;
+  margin: auto;
+   
+}
+#div3 {
+  background-image:url("../images/gracias.png");
+  background-repeat: no-repeat;  
+  width:100%;
+  height:auto;
+  margin: auto;
+   
+}

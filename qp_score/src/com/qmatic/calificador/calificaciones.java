@@ -46,9 +46,7 @@ public class calificaciones extends HttpServlet {
 			//para los GET
 			//rs = stmt.executeQuery("select * from dbo.calificaciones  where id = ");
 			
-			//// calificaiconID
-			///moduloID
-			//0 = esperando calfiicaicon , 1 = calificado
+
 			rs = stmt.executeQuery("select * from dbo.qp_encuesta  where modulo ='1' and estado = '0'");
 			if (rs.next()) {
 			    do {
