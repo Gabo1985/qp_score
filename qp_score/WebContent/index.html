@@ -1,36 +1,77 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<script>
+function showDiv(n)
+{
+document.getElementById("div"+n).style.display = 'block'
+return false;
+}
+
+function hideDiv(n)
+{
+for (x=1; x<=10; x++)
+{
+document.getElementById("div"+x).style.display = 'none'
+}
+document.getElementById(n).style.display = 'block'
+return false;
+
+}
+
+function toggleDiv(id)
+{
+	for (x=1; x<=3; x++)
+	{
+		document.getElementById("div"+x).style.display = 'none';
+	}
+	
+	document.getElementById(id).style.display = 'block';
+}
+
+
+</script>
+
 </head>
+
 <body>
-<table border="2" bordercolor="#81BEF7">
-<tr bordercolor="#81BEF7">
-	<td>Customer Name</td>
-	<td>Address</td>
-	<td>Contact Number</td>
+
+<table width="50%" border="1" cellspacing="0" cellpadding="0">
+<tr>
+<td>
+<a href="#" onClick="toggleDiv('div1');return false;">show div 1</a> &nbsp;
+<a href="#" onClick="toggleDiv('div2');return false;">show div 2</a> &nbsp;
+<a href="#" onClick="toggleDiv('div3');return false;">show div 3</a>
+</td>
 </tr>
-<tr bordercolor="#81BEF7">
-	<td>AA</td>
-	<td>AA Address</td>
-	<td>1111</td>
- 	<td>	
-		<form name="detail" action="calificaciones" method="post">
-			<input type="submit" name="btnCustomerInfo" value="Detail.." />
-		</form>
-	</td>
-</tr>
-<tr bordercolor="#81BEF7">
-	<td>BB</td>
-	<td>BB Address</td>
-	<td>2222</td>
- 	<td>	
-		<form name="detail" action="calificaciones" method="post">
-			<input type="submit" name="btnCustomerInfo" value="Detail.." />
-		</form>
-	</td>
+
+<tr>
+<td>
+
+<div id="div1" style="display: none">
+<table border=0 width=25% cellspacing="0" cellpadding="0">
+<tr><td>this is div 1 contects</td></tr>
+</table>
+</div>
+
+<div id="div2" style="display: none">
+<table border=0 width=25% cellspacing="0" cellpadding="0">
+<tr><td>this is div 2 contects</td></tr>
+</table>
+</div>
+
+
+<div id="div3" style="display: none">
+<table border=0 width=25% cellspacing="0" cellpadding="0">
+<tr><td>this is div 3 contects</td></tr>
+</table>
+</div>
+
+</td>
 </tr>
 </table>
+
 </body>
 </html>
