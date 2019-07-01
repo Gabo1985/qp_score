@@ -5,9 +5,9 @@
 
 <link rel="stylesheet" type="text/css" href="css/calificador.css">
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<script type="text/javascript" src="javascript/jquery.min.js"></script>
 
 <script>
-
 	function showDiv(n) {
 		document.getElementById("div" + n).style.display = 'block'
 		return false;
@@ -35,63 +35,77 @@
 	}
 </script>
 
+<script>
+	//BOTON GUARDAR
+	$(document).ready(function() {
+
+		$("#EXCELENTE").on('click', function() {
+			$('#ValCal').val("Dato");
+
+			var Button = document.getElementById("EXCELENTE").value;
+			//alert(Button);
+		});
+	});
+</script>
+
 </head>
 
 <body>
+	<form name="frmuser" method="post" action="calificaciones">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0"text-align:center;>
+			<tr>
+				<td>
 
-	<table width="100%" border="0" cellspacing="0" cellpadding="0" text-align:center;>
-		<tr>
-			<td>
-
-				<div id="div1">
-					<table border=0 width=100% cellspacing="0" cellpadding="0" text-align:center;>
-						<tr>
-							<td><button
-									onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">EXCELENTE</button></td>
-							<td><button
-									onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">MUY
-									BUENO</button></td>
-							<td><button
-									onclick="toggleDiv('div2');setTimeout(returnCalificacion, 5000);">BUENO</button></td>
-							<td><button
-									onclick="toggleDiv('div2');setTimeout(returnCalificacion, 5000);">REGULAR</button></td>
-							<td><button
-									onclick="toggleDiv('div2');setTimeout(returnCalificacion, 5000);">MALO</button></td>
-						</tr>
-					</table>
-				</div>
-
-				<div id="div2" style="display: none">
-					<table border=0 width=100% cellspacing="0" cellpadding="0" text-align:center;>
-						<tr>
-							<td>¿SE SIENTE SATISFECHO CON NUESTRA ATENCIÓN?</td>
-						</tr>
-						<tr>
-							<td><button
-									onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">SI</button></td>
-						</tr>
-						<tr>
-					<td><button
-								onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">NO</button></td>
-						</tr>
+					<div id="div1">
+						<table border=0 width=100% cellspacing="0" cellpadding="0"text-align:center;>
+							<tr>
+								<td><button name="EXCELENTE" id="EXCELENTE" value=""
+										onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">EXCELENTE</button></td>
+								<input type="hidden" name="ValCal" id="ValCal"></input>
+								<td><button name="MUY BUENO" id="MUY BUENO" value=""
+										onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">MUY
+										BUENO</button></td>
+								<td><button name="BUENO" id="BUENO" value=""
+										onclick="toggleDiv('div2');setTimeout(returnCalificacion, 5000);">BUENO</button></td>
+								<td><button name="REGULAR" id="REGULAR" value=""
+										onclick="toggleDiv('div2');setTimeout(returnCalificacion, 5000);">REGULAR</button></td>
+								<td><button name="MALO" id="MALO" value=""
+										onclick="toggleDiv('div2');setTimeout(returnCalificacion, 5000);">MALO</button></td>
+							</tr>
 						</table>
-				</div>
+					</div>
+
+					<div id="div2" style="display: none">
+						<table border=0 width=100% cellspacing="0" cellpadding="0"text-align:center;>
+							<tr>
+								<td>¿SE SIENTE SATISFECHO CON NUESTRA ATENCIÓN?</td>
+							</tr>
+							<tr>
+								<td><button
+										onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">SI</button></td>
+							</tr>
+							<tr>
+								<td><button
+										onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">NO</button></td>
+							</tr>
+						</table>
+					</div>
 
 
-				<div id="div3" style="display: none">
-					<table border=0 width=100% cellspacing="0" cellpadding="0" text-align:center;>
-						<tr>
-							<td>GRACIAS POR CALIFICAR NUESTRO SERVICIO</td>
-						</tr>
-						<tr>
-							<td>ES UN PLACER ATENDERLO</td>
-						</tr>
-					</table>
-				</div>
+					<div id="div3" style="display: none">
+						<table border=0 width=100% cellspacing="0" cellpadding="0"text-align:center;>
+							<tr>
+								<td>GRACIAS POR CALIFICAR NUESTRO SERVICIO</td>
+							</tr>
+							<tr>
+								<td>ES UN PLACER ATENDERLO</td>
+							</tr>
+						</table>
+					</div>
 
-			</td>
-		</tr>
-	</table>
-
+				</td>
+			</tr>
+		</table>
+	</form>
 </body>
 </html>
