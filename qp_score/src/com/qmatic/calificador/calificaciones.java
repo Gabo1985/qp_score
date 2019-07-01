@@ -52,7 +52,7 @@ public class calificaciones extends HttpServlet {
 			String parametro = request.getParameter("ValCal");
 			
 			
-			stmt.executeUpdate("INSERT INTO [dbo].[qp_score]([id_marca],[id_encuesta],[fecha_creacion],[parametro],[hora_creacion]) VALUES('" + id_marca+ "','" + id_encuesta+ "','" + fecha_creacion+ "','" +parametro + "','" +  hora_creacion+"')");
+			stmt.executeUpdate("INSERT INTO [dbo].[qp_score]([id_marca],[id_encuesta],[fecha_creacion],[hora_creacion]) VALUES('" + id_marca+ "','" + id_encuesta+ "','" + fecha_creacion+ "','" +  hora_creacion+"')");
 			response.sendRedirect("index.html");
 			//para los GET
 			//rs = stmt.executeQuery("select * from dbo.calificaciones  where id = ");
