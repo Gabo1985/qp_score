@@ -32,6 +32,8 @@
 
 	function returnCalificacion() {
 		toggleDiv("div1");
+		
+		//alert("holis2");
 	}
 </script>
 
@@ -51,7 +53,7 @@
 </head>
 
 <body>
-	<form name="frmuser" method="post" action="calificaciones">
+	<form name="fmScore" method="post" action="calificaciones">
 		<table width="100%" border="0" cellspacing="0" cellpadding="0"text-align:center;>
 			<tr>
 				<td>
@@ -60,10 +62,10 @@
 						<table border=0 width=100% cellspacing="0" cellpadding="0"text-align:center;>
 							<tr>
 								<td><button name="EXCELENTE" id="EXCELENTE" value=""
-										onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">EXCELENTE</button></td>
+										onclick="toggleDiv('div3');setTimeout(returnCalificacion, 5000);">EXCELENTE</button></td>
 								<input type="hidden" name="ValCal" id="ValCal"></input>
 								<td><button name="MUY BUENO" id="MUY BUENO" value=""
-										onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">MUY
+										onclick="toggleDiv('div3');setTimeout(returnCalificacion, 5000);">MUY
 										BUENO</button></td>
 								<td><button name="BUENO" id="BUENO" value=""
 										onclick="toggleDiv('div2');setTimeout(returnCalificacion, 5000);">BUENO</button></td>

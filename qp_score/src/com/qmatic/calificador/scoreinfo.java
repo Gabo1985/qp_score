@@ -17,10 +17,14 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.qmatic.conexionDB;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 
 
 
-@Path("/consultas")
+@Path("/consultas/")
 public class scoreinfo {
 	
 	
@@ -103,6 +107,9 @@ public class scoreinfo {
 
 		}
 		
-		//---------------------------------------------------------------------------------
 		
+		
+		
+		//---------------------------------------------------------------------------------
+
 }
