@@ -14,8 +14,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.xml.ws.Response;
-
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -30,34 +28,47 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path("/consultas")
+@WebServlet("/HolaMundo")
 //@WebServlet("/consulta1")
-public class scoreinfo{
-	  
-    @GET
-    @Path("/lista")
-    public String getPlain1()
-    {				
-    		 Connection con = null;
-    		 Statement stmt = null;
-    		 ResultSet rs = null;
-    		
+public class HolaMundo{
+	
+	 @GET
+	    @Path("/saludo")
+	    @Produces(MediaType.TEXT_PLAIN)
+	    public String holaMundo()
+	    {
+	        String saludo = "Hola Mundo!!!";        
+	        return saludo;  
+	    }
+	 
+	/*private Connection con = null;
+	private Statement stmt = null;
+	private ResultSet rs = null;
+	
+	//-----------------------------------------------------------------------------
 
-    	try{
-    		
-			String id_marca;
-			String nombre_marca;
-			String id_tipo_marca;
-			String fecha_creacion;
-			String estado;
-			
-			con = conexionDB.getConnection();
-			stmt = con.createStatement();
-			
-			rs = stmt.executeQuery("select id_marca,nombre_marca,id_tipo_marca,fecha_creacion,estado from qp_marca");
+	@GET
+	@Path("/listamarcas")
+	public String info() 
+	{
+		return "hola";
+	}
+		/*public String getPlain() {
 
-
-                String result = "";
+			try {
+				
+				String id_marca;
+				String nombre_marca;
+				String id_tipo_marca;
+				String fecha_creacion;
+				String estado;
+				
+				con = conexionDB.getConnection();
+				stmt = con.createStatement();
+				
+				rs = stmt.executeQuery("select id_marca,nombre_marca,id_tipo_marca,fecha_creacion,estado from qp_marca");
+				
+				String result = "";
 				
 				
 				result+= "[";
@@ -96,14 +107,18 @@ public class scoreinfo{
 				result += "]";
 				
 				
-				return result;  
-				
-    		}catch(Exception ex)
-    		{
-    			ex.printStackTrace();
-    		}
-		return null;
-    	
-	    	
-    }			
+				return result;
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return null;
+
+		}*/
+		
+		
+		
+		
+		//---------------------------------------------------------------------------------
+
 }

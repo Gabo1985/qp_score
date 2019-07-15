@@ -21,11 +21,11 @@ public class conexionDB {
 			try {
 				con = DriverManager.getConnection(url, username, password);
 			} catch (SQLException ex) {
-				// log an exception. fro example:
+
 				System.out.println("Error en conectarse a la base");
 			}
 		} catch (ClassNotFoundException ex) {
-			// log an exception. for example:
+
 			System.out.println("No hay driver.");
 		}
 		
