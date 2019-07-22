@@ -47,12 +47,33 @@ public class calificaciones extends HttpServlet {
 
 			int fecha_creacion = 1072019;
 			int hora_creacion = 230;
-			int id_encuesta = 1;
+			int id_encuesta = 2;
 			int id_marca = 1;
-			String parametro = request.getParameter("ValCal");
+			int id_marca2=0;
+			//String parametro = request.getParameter("ValCal");
+			if(request.getParameter("EXCELENTE") != null)
+			{
+				id_marca2= Integer.parseInt(request.getParameter("EXCELENTE"));
+			}else
+				if(request.getParameter("MUY_BUENO") != null)
+				{
+					id_marca2= Integer.parseInt(request.getParameter("MUY_BUENO"));
+				}else
+					if(request.getParameter("BUENO") != null)
+					{
+						id_marca2= Integer.parseInt(request.getParameter("BUENO"));
+					}else
+						if(request.getParameter("REGULAR") != null)
+						{
+							id_marca2= Integer.parseInt(request.getParameter("REGULAR"));
+						}else
+							if(request.getParameter("MALO") != null)
+							{
+								id_marca2= Integer.parseInt(request.getParameter("MALO"));
+							}
 			
 			
-			stmt.executeUpdate("INSERT INTO [dbo].[qp_score]([id_marca],[id_encuesta],[fecha_creacion],[hora_creacion]) VALUES('" + id_marca+ "','" + id_encuesta+ "','" + fecha_creacion+ "','" +  hora_creacion+"')");
+			stmt.executeUpdate("INSERT INTO [dbo].[qp_score]([id_marca],[id_encuesta],[fecha_creacion],[hora_creacion]) VALUES('" + id_marca2+ "','" + id_encuesta+ "','" + fecha_creacion+ "','" +  hora_creacion+"')");
 			response.sendRedirect("index.html");
 			//para los GET
 			//rs = stmt.executeQuery("select * from dbo.calificaciones  where id = ");

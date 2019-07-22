@@ -25,28 +25,29 @@
 								//alert(response[index].nombre_marca);
 								if(response[index].nombre_marca=="EXCELENTE")			
 								{
-									alert("EXCELENTE");
-									alert(response[index].id_marca );
+									$("#EXCELENTE").attr("value",response[index].id_marca);
+									$("#EXCELENTE").attr("id",response[index].id_marca);
 								}else
 									if(response[index].nombre_marca=="MUY BUENO")			
 									{
-										alert("MUY BUENO");
-										alert(response[index].id_marca );
-									}else
+										$("#MUY_BUENO").attr("value",response[index].id_marca);
+										$("#MUY_BUENO").attr("id",response[index].id_marca);
+										}else
 										if(response[index].nombre_marca=="BUENO")			
 										{
-											alert("BUENO");
-											alert(response[index].id_marca );
+											$("#BUENO").attr("value",response[index].id_marca);
+											$("#BUENO").attr("id",response[index].id_marca);
+											
 										}else
 											if(response[index].nombre_marca=="REGULAR")			
 											{
-												alert("REGULAR");
-												alert(response[index].id_marca );
+												$("#REGULAR").attr("value",response[index].id_marca);
+												$("#REGULAR").attr("id",response[index].id_marca);
 											}else
 												if(response[index].nombre_marca=="MALO")			
 											{
-												alert("MALO");
-												alert(response[index].id_marca );
+													$("#MALO").attr("value",response[index].id_marca);
+													$("#MALO").attr("id",response[index].id_marca);
 											}
 
 							}); // FIN EACH
@@ -117,7 +118,7 @@
 								<td><button name="EXCELENTE" id="EXCELENTE" value=""
 										onclick="toggleDiv('div3');setTimeout(returnCalificacion, 5000);">EXCELENTE</button></td>
 								<input type="hidden" name="ValCal" id="ValCal"></input>
-								<td><button name="MUY BUENO" id="MUY BUENO" value=""
+								<td><button name="MUY_BUENO" id="MUY_BUENO" value=""
 										onclick="toggleDiv('div3');setTimeout(returnCalificacion, 5000);">MUY
 										BUENO</button></td>
 								<td><button name="BUENO" id="BUENO" value=""
