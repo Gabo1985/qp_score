@@ -32,78 +32,71 @@ import javax.ws.rs.core.MediaType;
 
 @Path("/consultas")
 //@WebServlet("/consulta1")
-public class scoreinfo{
-	  
-    @GET
-    @Path("/lista")
-    public String getPlain1()
-    {				
-    		 Connection con = null;
-    		 Statement stmt = null;
-    		 ResultSet rs = null;
-    		
+public class scoreinfo {
 
-    	try{
-    		
+	@GET
+	@Path("/listaMarcas")
+	public String getPlain1() {
+		Connection con = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+
+		try {
+
 			String id_marca;
 			String nombre_marca;
 			String id_tipo_marca;
 			String fecha_creacion;
 			String estado;
-			
+
 			con = conexionDB.getConnection();
 			stmt = con.createStatement();
-			
+
 			rs = stmt.executeQuery("select id_marca,nombre_marca,id_tipo_marca,fecha_creacion,estado from qp_marca");
 
+			String result = "";
 
-                String result = "";
-				
-				
-				result+= "[";
-				while (rs.next()) {
-				
-					 id_marca = rs.getString(1);
-					 nombre_marca = rs.getString(2);
-					 id_tipo_marca = rs.getString(3);
-					 fecha_creacion = rs.getString(4);
-					 estado = rs.getString(5);
-					
-					result += "{";
-					
-					result += "\"id_marca\":";
+			result += "[";
+			while (rs.next()) {
 
-					result += "\"" + id_marca + "\",";
+				id_marca = rs.getString(1);
+				nombre_marca = rs.getString(2);
+				id_tipo_marca = rs.getString(3);
+				fecha_creacion = rs.getString(4);
+				estado = rs.getString(5);
 
-					result += "\"nombre_marca\":";
-					result += "\"" + nombre_marca + "\",";
+				result += "{";
 
-					result += "\"id_tipo_marca\":";
+				result += "\"id_marca\":";
 
-					result += "\"" + id_tipo_marca + "\",";
+				result += "\"" + id_marca + "\",";
 
-					result += "\"fecha_creacion\":";
-					result += "\"" + fecha_creacion + "\",";
-					
-					result += "\"estado\":";
-					result += "\"" + estado + "\"";
-					
-					result += "}";
+				result += "\"nombre_marca\":";
+				result += "\"" + nombre_marca + "\",";
 
-					result += ",";
-				}
-				result = result.substring(0, result.length() - 1);
-				result += "]";
-				
-				
-				return result;  
-				
-    		}catch(Exception ex)
-    		{
-    			ex.printStackTrace();
-    		}
+				result += "\"id_tipo_marca\":";
+
+				result += "\"" + id_tipo_marca + "\",";
+
+				result += "\"fecha_creacion\":";
+				result += "\"" + fecha_creacion + "\",";
+
+				result += "\"estado\":";
+				result += "\"" + estado + "\"";
+
+				result += "}";
+
+				result += ",";
+			}
+			result = result.substring(0, result.length() - 1);
+			result += "]";
+
+			return result;
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 		return null;
-    	
-	    	
-    }			
+
+	}
 }
