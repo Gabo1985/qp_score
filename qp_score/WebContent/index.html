@@ -7,6 +7,59 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <script type="text/javascript" src="javascript/jquery.min.js"></script>
 
+<script language="javascript" type="text/javascript">
+	//EJECUCION DE LA FUNCION INICIO
+	window.onload = inicio;
+	//FUNCION DENTRO DEL HEAD PARA LA EJECUCION CON EL CONTENIDO INICIAL DE LAPAGINA
+	function inicio() {
+		{
+			var cont = 0;
+			$.ajax({    type : "GET",
+						url : "http://CHD-QSISTEMS:8080/qp_score/rest/consultas/listaMarcas",
+						contentType : "application/json; charset=utf-8",
+						dataType : "json",
+						success : function(response) {
+
+							$.each(response,function(index, product) {
+								cont++;
+								//alert(response[index].nombre_marca);
+								if(response[index].nombre_marca=="EXCELENTE")			
+								{
+									alert("EXCELENTE");
+									alert(response[index].id_marca );
+								}else
+									if(response[index].nombre_marca=="MUY BUENO")			
+									{
+										alert("MUY BUENO");
+										alert(response[index].id_marca );
+									}else
+										if(response[index].nombre_marca=="BUENO")			
+										{
+											alert("BUENO");
+											alert(response[index].id_marca );
+										}else
+											if(response[index].nombre_marca=="REGULAR")			
+											{
+												alert("REGULAR");
+												alert(response[index].id_marca );
+											}else
+												if(response[index].nombre_marca=="MALO")			
+											{
+												alert("MALO");
+												alert(response[index].id_marca );
+											}
+
+							}); // FIN EACH
+
+						},
+						error : function(response) {
+							console.log("error");
+						}
+					});
+		}// FIN DE LA FUNCION DE INICIO
+	}
+</script>
+
 <script>
 	function showDiv(n) {
 		document.getElementById("div" + n).style.display = 'block'
@@ -32,7 +85,7 @@
 
 	function returnCalificacion() {
 		toggleDiv("div1");
-		
+
 		//alert("holis2");
 	}
 </script>
