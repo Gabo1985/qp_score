@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -49,9 +51,8 @@ public class calificaciones extends HttpServlet {
 			int hora_creacion = 230;
 			int id_encuesta = 2;
 			int id_marca = Integer.parseInt(request.getParameter("ValCal"));
-			int id_marca2=0;
-			//String parametro = request.getParameter("ValCal");
-			
+
+/*			int id_marca2=0;		
 			if(request.getParameter("EXCELENTE") != null)
 			{
 				id_marca2= Integer.parseInt(request.getParameter("EXCELENTE"));
@@ -71,7 +72,7 @@ public class calificaciones extends HttpServlet {
 							if(request.getParameter("MALO") != null)
 							{
 								id_marca2= Integer.parseInt(request.getParameter("MALO"));
-							}
+							}*/
 			
 			
 			stmt.executeUpdate("INSERT INTO [dbo].[qp_score]([id_marca],[id_encuesta],[fecha_creacion],[hora_creacion]) VALUES('" + id_marca+ "','" + id_encuesta+ "','" + fecha_creacion+ "','" +  hora_creacion+"')");
