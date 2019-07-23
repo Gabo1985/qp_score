@@ -10,7 +10,7 @@
 <script language="javascript" type="text/javascript">
 	//EJECUCION DE LA FUNCION INICIO
 	window.onload = inicio;
-	//FUNCION DENTRO DEL HEAD PARA LA EJECUCION CON EL CONTENIDO INICIAL DE LAPAGINA
+	//FUNCION DENTRO DEL HEAD PARA LA EJECUCION CON EL CONTENIDO INICIAL DE LA PAGINA
 	function inicio() {
 		{
 			var cont = 0;
@@ -62,6 +62,7 @@
 </script>
 
 <script>
+// NAVEGACION ENTRE DIV
 	function showDiv(n) {
 		document.getElementById("div" + n).style.display = 'block'
 		return false;
@@ -73,7 +74,6 @@
 		}
 		document.getElementById(n).style.display = 'block'
 		return false;
-
 	}
 
 	function toggleDiv(id) {
@@ -87,19 +87,28 @@
 	function returnCalificacion() {
 		toggleDiv("div1");
 
-		//alert("holis2");
 	}
 </script>
 
 <script>
-	//BOTON GUARDAR
+	// ASIGNACION DE CALIFICACION EN INPUT
+	
 	$(document).ready(function() {
-
-		$("#EXCELENTE").on('click', function() {
-			$('#ValCal').val("Dato");
-
-			var Button = document.getElementById("EXCELENTE").value;
-			//alert(Button);
+		$("#EXCELENTE").click(function() {
+			$('#ValCal').val($(this).attr("id"));
+			//alert($('#ValCal').val());
+		});
+		$("#MUY_BUENO").click(function() {
+			$('#ValCal').val($(this).attr("id"));
+		});
+		$("#BUENO").click(function() {
+			$('#ValCal').val($(this).attr("id"));
+		});
+		$("#REGULAR").click(function() {
+			$('#ValCal').val($(this).attr("id"));
+		});
+		$("#MALO").click(function() {
+			$('#ValCal').val($(this).attr("id"));
 		});
 	});
 </script>
@@ -111,13 +120,13 @@
 		<table width="100%" border="0" cellspacing="0" cellpadding="0"text-align:center;>
 			<tr>
 				<td>
-
 					<div id="div1">
 						<table border=0 width=100% cellspacing="0" cellpadding="0"text-align:center;>
+							<input name="ValCal" id="ValCal"></input>
 							<tr>
 								<td><button name="EXCELENTE" id="EXCELENTE" value=""
 										onclick="toggleDiv('div3');setTimeout(returnCalificacion, 5000);">EXCELENTE</button></td>
-								<input type="hidden" name="ValCal" id="ValCal"></input>
+								
 								<td><button name="MUY_BUENO" id="MUY_BUENO" value=""
 										onclick="toggleDiv('div3');setTimeout(returnCalificacion, 5000);">MUY
 										BUENO</button></td>
