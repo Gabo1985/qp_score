@@ -96,6 +96,36 @@
 	$(document).ready(function() {
 		$("#EXCELENTE").click(function() {
 			$('#ValCal').val($(this).attr("id"));
+			
+			{
+				var cont = 0;
+				$.ajax({    type : "GET",
+							url : "http://CHD-QSISTEMS:8080/qp_score/rest/consultas/listaMarcas",
+							contentType : "application/json; charset=utf-8",
+							dataType : "json",
+							success : function(response) {
+								$.each(response,function(index, product) {
+									cont++;
+									
+									if(response[index].nombre_marca=="EXCELENTE")			
+									{
+										if(response[index].opcion_pregunta== 1)
+										{
+											$("#EXCELENTE").on("click",toggleDiv('div2'));  // DIV 2 ES PREGUNTAS
+										}else		
+										{
+											$("#EXCELENTE").on("click",toggleDiv('div3'));  // DIV 3 ES GRACIAS	
+										}
+									}
+								}); // FIN EACH
+							},
+							error : function(response) {
+								console.log("error");
+							}
+						});
+			} // AJAX
+
+
 			//alert($('#ValCal').val());
 		});
 		$("#MUY_BUENO").click(function() {
