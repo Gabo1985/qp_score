@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <script type="text/javascript" src="javascript/jquery.min.js"></script>
 
-<script language="javascript" type="text/javascript">
+<script>
 	//EJECUCION DE LA FUNCION INICIO
 	window.onload = inicio;
 	//FUNCION DENTRO DEL HEAD PARA LA EJECUCION CON EL CONTENIDO INICIAL DE LA PAGINA
@@ -62,7 +62,8 @@
 </script>
 
 <script>
-// NAVEGACION ENTRE DIV
+
+	// NAVEGACION ENTRE DIV
 	function showDiv(n) {
 		document.getElementById("div" + n).style.display = 'block'
 		return false;
@@ -83,66 +84,77 @@
 
 		document.getElementById(id).style.display = 'block';
 	}
-
+	
 	function returnCalificacion() {
 		toggleDiv("div1");
-
 	}
 </script>
 
 <script>
 	// ASIGNACION DE CALIFICACION EN INPUT
-	
+
 	$(document).ready(function() {
 		$("#EXCELENTE").click(function() {
 			$('#ValCal').val($(this).attr("id"));
-			
-			{
-				var cont = 0;
-				$.ajax({    type : "GET",
-							url : "http://CHD-QSISTEMS:8080/qp_score/rest/consultas/listaMarcas",
-							contentType : "application/json; charset=utf-8",
-							dataType : "json",
-							success : function(response) {
-								$.each(response,function(index, product) {
-									cont++;
-									
-									if(response[index].nombre_marca=="EXCELENTE")			
-									{
-										if(response[index].opcion_pregunta== 1)
-										{
-											$("#EXCELENTE").on("click",toggleDiv('div2'));  // DIV 2 ES PREGUNTAS
-										}else		
-										{
-											$("#EXCELENTE").on("click",toggleDiv('div3'));  // DIV 3 ES GRACIAS	
-										}
-									}
-								}); // FIN EACH
-							},
-							error : function(response) {
-								console.log("error");
-							}
-						});
-			} // AJAX
-
-
+			submenu("EXCELENTE"); //Redireccionar al Div correspondiente
 			//alert($('#ValCal').val());
 		});
 		$("#MUY_BUENO").click(function() {
 			$('#ValCal').val($(this).attr("id"));
+			submenu("MUY BUENO");//Redireccionar al Div correspondiente
 		});
 		$("#BUENO").click(function() {
 			$('#ValCal').val($(this).attr("id"));
+			submenu("BUENO");//Redireccionar al Div correspondiente
 		});
 		$("#REGULAR").click(function() {
 			$('#ValCal').val($(this).attr("id"));
+			submenu("REGULAR");//Redireccionar al Div correspondiente
 		});
 		$("#MALO").click(function() {
 			$('#ValCal').val($(this).attr("id"));
+			submenu("MALO");//Redireccionar al Div correspondiente
 		});
 	});
 </script>
 
+<script>
+//VALIDACION SUBMENÚ DE TODOS LOS BOTONES.
+function submenu(marca) {
+	var nombre_marca = marca;
+	{
+		var cont = 0;
+		$.ajax({    type : "GET",
+					url : "http://CHD-QSISTEMS:8080/qp_score/rest/consultas/listaMarcas",
+					contentType : "application/json; charset=utf-8",
+					dataType : "json",
+					success : function(response) {
+						$.each(response,function(index, product) {
+							cont++;
+							
+							if(response[index].nombre_marca== nombre_marca)			
+							{
+								if(nombre_marca ="MUY BUENO")
+									{nombre_marca= "MUY_BUENO"}
+								
+								if(response[index].opcion_pregunta== 1)
+								{
+									$("#" + nombre_marca).on("click",toggleDiv('div2'));  // DIV 2 ES PREGUNTAS
+								}else		
+								{
+									$("#" + nombre_marca).on("click",toggleDiv('div3'));  // DIV 3 ES GRACIAS	
+								}
+							}
+						}); // FIN EACH
+					},
+					error : function(response) {
+						console.log("error");
+					}
+				});
+	} // AJAX
+
+}
+</script>
 </head>
 
 <body>
@@ -155,17 +167,17 @@
 							<input type="hidden" name="ValCal" id="ValCal"></input>
 							<tr>
 								<td><button name="EXCELENTE" id="EXCELENTE" value=""
-										onclick="toggleDiv('div3');setTimeout(returnCalificacion, 5000);">EXCELENTE</button></td>
+										onclick="setTimeout(returnCalificacion, 5000);">EXCELENTE</button></td>
 								
 								<td><button name="MUY_BUENO" id="MUY_BUENO" value=""
-										onclick="toggleDiv('div3');setTimeout(returnCalificacion, 5000);">MUY
+										onclick="setTimeout(returnCalificacion, 5000);">MUY
 										BUENO</button></td>
 								<td><button name="BUENO" id="BUENO" value=""
-										onclick="toggleDiv('div2');setTimeout(returnCalificacion, 5000);">BUENO</button></td>
+										onclick="setTimeout(returnCalificacion, 5000);">BUENO</button></td>
 								<td><button name="REGULAR" id="REGULAR" value=""
-										onclick="toggleDiv('div2');setTimeout(returnCalificacion, 5000);">REGULAR</button></td>
+										onclick="setTimeout(returnCalificacion, 5000);">REGULAR</button></td>
 								<td><button name="MALO" id="MALO" value=""
-										onclick="toggleDiv('div2');setTimeout(returnCalificacion, 5000);">MALO</button></td>
+										onclick="setTimeout(returnCalificacion, 5000);">MALO</button></td>
 							</tr>
 						</table>
 					</div>
