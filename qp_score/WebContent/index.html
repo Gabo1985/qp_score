@@ -12,7 +12,7 @@
 	window.onload = inicio;
 	//FUNCION DENTRO DEL HEAD PARA LA EJECUCION CON EL CONTENIDO INICIAL DE LA PAGINA
 	function inicio() {
-		{
+		{ 
 			var cont = 0;
 			$.ajax({    type : "GET",
 						url : "http://CHD-QSISTEMS:8080/qp_score/rest/consultas/listaMarcas",
@@ -58,6 +58,7 @@
 						}
 					});
 		}// FIN DE LA FUNCION DE INICIO
+		
 	}
 </script>
 
@@ -155,6 +156,30 @@ function submenu(marca) {
 
 }
 </script>
+
+<script>
+// FUNCION DE PINTADO DE PREGUNTA 
+
+		{ // FUNCION DE CARGA DE PREGUNTAS EN PANTALLA
+			var cont = 0;
+			$.ajax({    type : "GET",
+						url : "http://chd-qsistems:8080/qp_score/rest/consultas/listaEncuesta",
+						contentType : "application/json; charset=utf-8",
+						dataType : "json",
+						success : function(response) {
+
+							$.each(response,function(index, product) {
+								
+								//alert(response[index].pregunta_encuesta);
+							}); // FIN EACH
+
+						},
+						error : function(response) {
+							console.log("error");
+						}
+					});
+		}// FIN DE LA FUNCION DE INICIO
+</script>
 </head>
 
 <body>
@@ -168,7 +193,6 @@ function submenu(marca) {
 							<tr>
 								<td><button name="EXCELENTE" id="EXCELENTE" value=""
 										onclick="setTimeout(returnCalificacion, 5000);">EXCELENTE</button></td>
-								
 								<td><button name="MUY_BUENO" id="MUY_BUENO" value=""
 										onclick="setTimeout(returnCalificacion, 5000);">MUY
 										BUENO</button></td>
@@ -185,7 +209,7 @@ function submenu(marca) {
 					<div id="div2" style="display: none">
 						<table border=0 width=100% cellspacing="0" cellpadding="0"text-align:center;>
 							<tr>
-								<td>¿SE SIENTE SATISFECHO CON NUESTRA ATENCIÓN?</td>
+								<td><p id=pregunta2> ¿SE SIENTE SATISFECHO CON NUESTRA ATENCIÓN?</p></td>
 							</tr>
 							<tr>
 								<td><button
