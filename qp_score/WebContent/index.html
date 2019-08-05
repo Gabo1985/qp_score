@@ -135,12 +135,13 @@ function submenu(marca) {
 							
 							if(response[index].nombre_marca== nombre_marca)			
 							{
-								if(nombre_marca ="MUY BUENO")
+								if(nombre_marca =="MUY BUENO")
 									{nombre_marca= "MUY_BUENO"}
-								
 								if(response[index].opcion_pregunta== 1)
 								{
+									
 									$("#" + nombre_marca).on("click",toggleDiv('div2'));  // DIV 2 ES PREGUNTAS
+									pregunta(nombre_marca);
 								}else		
 								{
 									$("#" + nombre_marca).on("click",toggleDiv('div3'));  // DIV 3 ES GRACIAS	
@@ -159,8 +160,9 @@ function submenu(marca) {
 
 <script>
 // FUNCION DE PINTADO DE PREGUNTA 
-
+function pregunta(nombre_marca) {
 		{ // FUNCION DE CARGA DE PREGUNTAS EN PANTALLA
+			var nombre_marca_p=nombre_marca;
 			var cont = 0;
 			$.ajax({    type : "GET",
 						url : "http://chd-qsistems:8080/qp_score/rest/consultas/listaEncuesta",
@@ -169,8 +171,10 @@ function submenu(marca) {
 						success : function(response) {
 
 							$.each(response,function(index, product) {
-								
-								//alert(response[index].pregunta_encuesta);
+							if(response[index].nombre_marca == nombre_marca_p)	
+								{
+									$("#question").text(response[index].pregunta_encuesta);
+								}	
 							}); // FIN EACH
 
 						},
@@ -179,11 +183,12 @@ function submenu(marca) {
 						}
 					});
 		}// FIN DE LA FUNCION DE INICIO
+  }
 </script>
 </head>
 
 <body>
-	<form name="fmScore" method="post" action="calificaciones">
+<!-- 	<form name="fmScore" method="post" action="calificaciones"> -->
 		<table width="100%" border="0" cellspacing="0" cellpadding="0"text-align:center;>
 			<tr>
 				<td>
@@ -209,7 +214,7 @@ function submenu(marca) {
 					<div id="div2" style="display: none">
 						<table border=0 width=100% cellspacing="0" cellpadding="0"text-align:center;>
 							<tr>
-								<td><p id=pregunta2> ¿SE SIENTE SATISFECHO CON NUESTRA ATENCIÓN?</p></td>
+								<td><label id="question" name="question" >PREGUNTA PARAMETRO</label></td>
 							</tr>
 							<tr>
 								<td><button
@@ -237,6 +242,6 @@ function submenu(marca) {
 				</td>
 			</tr>
 		</table>
-	</form>
+<!-- 	</form> -->
 </body>
 </html>
