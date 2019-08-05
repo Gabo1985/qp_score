@@ -22,7 +22,6 @@
 
 							$.each(response,function(index, product) {
 								cont++;
-								//alert(response[index].nombre_marca);
 								if(response[index].nombre_marca=="EXCELENTE")			
 								{
 									$("#EXCELENTE").attr("value",response[index].id_marca);
@@ -124,6 +123,8 @@
 function submenu(marca) {
 	var nombre_marca = marca;
 	{
+		$('#btrespuesta1').hide(); $('#btrespuesta2').hide(); $('#btrespuesta3').hide(); $('#btrespuesta4').hide(); $('#btrespuesta5').hide();
+		
 		var cont = 0;
 		$.ajax({    type : "GET",
 					url : "http://CHD-QSISTEMS:8080/qp_score/rest/consultas/listaMarcas",
@@ -131,8 +132,7 @@ function submenu(marca) {
 					dataType : "json",
 					success : function(response) {
 						$.each(response,function(index, product) {
-							cont++;
-							
+							cont++;							
 							if(response[index].nombre_marca== nombre_marca)			
 							{
 								if(nombre_marca =="MUY BUENO")
@@ -161,10 +161,13 @@ function submenu(marca) {
 <script>
 // FUNCION DE PINTADO DE PREGUNTA 
 function pregunta(nombre_marca) {
-		{ // FUNCION DE CARGA DE PREGUNTAS EN PANTALLA
+		{ // FUNCION DE CARGA DE PREGUNTAS EN PANTALLA SOBRE LABEL
 			var nombre_marca_p=nombre_marca;
 			var cont = 0;
-			$.ajax({    type : "GET",
+			var id_marca;
+			var nombre_marca;
+			$.ajax({    async: false,
+						type : "GET",
 						url : "http://chd-qsistems:8080/qp_score/rest/consultas/listaEncuesta",
 						contentType : "application/json; charset=utf-8",
 						dataType : "json",
@@ -174,6 +177,43 @@ function pregunta(nombre_marca) {
 							if(response[index].nombre_marca == nombre_marca_p)	
 								{
 									$("#question").text(response[index].pregunta_encuesta);
+									id_marca=response[index].id_marca_opcion_1;
+
+									if(response[index].id_marca_opcion_1 != "null")
+									{ 
+										nombre_marca=marca(response[index].id_marca_opcion_1);
+										$('#btrespuesta1').html(nombre_marca);
+										$('#btrespuesta1').show();									
+									}
+									
+									if(response[index].id_marca_opcion_2 != "null")
+									{
+										nombre_marca=marca(response[index].id_marca_opcion_2);
+										$('#btrespuesta2').html(nombre_marca);
+										$('#btrespuesta2').show();									
+									}
+
+									if(response[index].id_marca_opcion_3 != "null")
+									{ 
+										nombre_marca=marca(response[index].id_marca_opcion_3);
+										$('#btrespuesta3').html(nombre_marca);
+										$('#btrespuesta3').show();									
+									}
+
+									if(response[index].id_marca_opcion_4 != "null")
+									{
+										nombre_marca=marca(response[index].id_marca_opcion_4);
+										$('#btrespuesta4').html(nombre_marca);
+										$('#btrespuesta4').show();									
+									}
+
+									if(response[index].id_marca_opcion_5 != "null")
+									{
+										nombre_marca=marca(response[index].id_marca_opcion_5);
+										$('#btrespuesta5').html(nombre_marca);
+										$('#btrespuesta5').show();									
+									}
+
 								}	
 							}); // FIN EACH
 
@@ -183,8 +223,43 @@ function pregunta(nombre_marca) {
 						}
 					});
 		}// FIN DE LA FUNCION DE INICIO
-  }
+}
 </script>
+
+<script>
+//FUNCION CONSULTA DE DIFERENTES MARCAS.
+
+function marca(id_marca) {
+		{ 
+			var id_marca_p=id_marca;
+			var cont = 0;
+			var retorno;
+			$.ajax({    async: false,
+						type : "GET",
+						url : "http://CHD-QSISTEMS:8080/qp_score/rest/consultas/listaMarcas",
+						contentType : "application/json; charset=utf-8",
+						dataType : "json",
+						success : function(response) {
+
+							$.each(response,function(index, product) {
+							if(response[index].id_marca == id_marca_p)	
+								{
+									retorno=response[index].nombre_marca;
+								}
+							}); // FIN EACH
+
+						},
+						error : function(response) {
+							console.log("error");
+						}
+					});
+		}// 
+		return retorno;	
+  }
+
+</script>
+
+
 </head>
 
 <body>
@@ -217,14 +292,26 @@ function pregunta(nombre_marca) {
 								<td><label id="question" name="question" >PREGUNTA PARAMETRO</label></td>
 							</tr>
 							<tr>
-								<td><button
-										onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">SI</button></td>
+								<td><button id= "btrespuesta1" name= "btrespuesta1" hidden="hidden"
+										onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">...</button></td>
 							</tr>
 							<tr>
-								<td><button
-										onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">NO</button></td>
+								<td><button id= "btrespuesta2" name= "btrespuesta2" hidden="hidden"
+										onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">...</button></td>
 							</tr>
-						</table>
+							<tr>
+								<td><button id="btrespuesta3" name="btrespuesta3" hidden="hidden"
+										onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">...</button></td>
+							</tr>
+							<tr>
+								<td><button id="btrespuesta4" name="btrespuesta4" hidden="hidden"
+										onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">...</button></td>
+							</tr>
+							<tr>
+								<td><button id="btrespuesta5" name="btrespuesta5" hidden="hidden"
+										onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">...</button></td>
+							</tr>
+					</table>
 					</div>
 
 
