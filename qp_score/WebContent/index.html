@@ -100,24 +100,24 @@
 
 	$(document).ready(function() {
 		$("#EXCELENTE").click(function() {
-			$('#ValCal').val($(this).attr("id"));
+			$('#ValCal').val($(this).attr("value"));
 			submenu("EXCELENTE"); //Redireccionar al Div correspondiente
 			//alert($('#ValCal').val());
 		});
 		$("#MUY_BUENO").click(function() {
-			$('#ValCal').val($(this).attr("id"));
+			$('#ValCal').val($(this).attr("value"));
 			submenu("MUY BUENO");//Redireccionar al Div correspondiente
 		});
 		$("#BUENO").click(function() {
-			$('#ValCal').val($(this).attr("id"));
+			$('#ValCal').val($(this).attr("value"));
 			submenu("BUENO");//Redireccionar al Div correspondiente
 		});
 		$("#REGULAR").click(function() {
-			$('#ValCal').val($(this).attr("id"));
+			$('#ValCal').val($(this).attr("value"));
 			submenu("REGULAR");//Redireccionar al Div correspondiente
 		});
 		$("#MALO").click(function() {
-			$('#ValCal').val($(this).attr("id"));
+			$('#ValCal').val($(this).attr("value"));
 			submenu("MALO");//Redireccionar al Div correspondiente
 		});
 		
@@ -213,6 +213,9 @@ function pregunta(nombre_marca) {
 							if(response[index].nombre_marca == nombre_marca_p)	
 								{
 									$("#question").text(response[index].pregunta_encuesta);
+									//$("#rquestion").text(response[index].id_encuesta);
+									$("#rquestion").attr("value",response[index].id_encuesta);
+									//$('#ValCal').val($(response[index].id_encuesta).attr("id"));
 									id_marca=response[index].id_marca_opcion_1;
 
 									if(response[index].id_marca_opcion_1 != "null")

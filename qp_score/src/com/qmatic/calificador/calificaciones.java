@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -20,6 +21,7 @@ import com.qmatic.conexionDB;
  * Servlet implementation class calificaciones
  */
 @WebServlet("/calificaciones")
+
 public class calificaciones extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Connection con = null;
@@ -46,12 +48,28 @@ public class calificaciones extends HttpServlet {
 			// System.out.println("exito");
 			stmt = con.createStatement();
 			
-
+			int rquestion = 0;
+			int rbtrespuesta1 = 0;
+			int rbtrespuesta2 = 0;
+			int rbtrespuesta3 = 0;
+			int rbtrespuesta4 = 0;
+			int rbtrespuesta5 = 0;
+			
+			//String dia = Integer.toString(c.get(Calendar.DATE));
+			//String mes = Integer.toString(c.get(Calendar.MONTH));
+			//String annio = Integer.toString(c.get(Calendar.YEAR));
+			
 			int fecha_creacion = 1072019;
 			int hora_creacion = 230;
 			int id_encuesta = 2;
 			int id_marca = Integer.parseInt(request.getParameter("ValCal"));
-
+			 rquestion = Integer.parseInt(request.getParameter("rquestion"));
+//			 rbtrespuesta1 = Integer.parseInt(request.getParameter("rbtrespuesta1"));
+//			 rbtrespuesta2 = Integer.parseInt(request.getParameter("rbtrespuesta2"));
+//			 rbtrespuesta3 = Integer.parseInt(request.getParameter("rbtrespuesta3"));
+//			 rbtrespuesta4 = Integer.parseInt(request.getParameter("rbtrespuesta4"));
+//			 rbtrespuesta5 = Integer.parseInt(request.getParameter("rbtrespuesta5"));
+//			
 /*			int id_marca2=0;		
 			if(request.getParameter("EXCELENTE") != null)
 			{
@@ -75,7 +93,7 @@ public class calificaciones extends HttpServlet {
 							}*/
 			
 			
-			stmt.executeUpdate("INSERT INTO [dbo].[qp_score]([id_marca],[id_encuesta],[fecha_creacion],[hora_creacion]) VALUES('" + id_marca+ "','" + id_encuesta+ "','" + fecha_creacion+ "','" +  hora_creacion+"')");
+			stmt.executeUpdate("INSERT INTO [dbo].[qp_score]([id_marca],[id_encuesta],[fecha_creacion],[hora_creacion]) VALUES('" + id_marca+ "','" + rquestion+ "','" + fecha_creacion+ "','" +  hora_creacion+"')");
 			response.sendRedirect("index.html");
 			//para los GET
 			//rs = stmt.executeQuery("select * from dbo.calificaciones  where id = ");
