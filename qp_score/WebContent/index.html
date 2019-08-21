@@ -14,6 +14,7 @@
 	function inicio() {
 		{ 
 			var cont = 0;
+						async: false,  //prueba
 			$.ajax({    type : "GET",
 						url : "http://CHD-QSISTEMS:8080/qp_score/rest/consultas/listaMarcas",
 						contentType : "application/json; charset=utf-8",
@@ -115,6 +116,32 @@
 			$('#ValCal').val($(this).attr("id"));
 			submenu("MALO");//Redireccionar al Div correspondiente
 		});
+		
+		$("#question").click(function() {
+			$('#rquestion').val($(this).attr("value"));
+		});
+		$("#btrespuesta1").click(function() {
+			$('#rbtrespuesta1').val($(this).attr("value"));
+			//alert($('#rbtrespuesta1').val());
+		});
+		$("#btrespuesta2").click(function() {
+			$('#rbtrespuesta2').val($(this).attr("value"));
+			//alert($('#rbtrespuesta2').val());
+		});
+		$("#btrespuesta3").click(function() {
+			$('#rbtrespuesta3').val($(this).attr("value"));
+			//alert($('#rbtrespuesta3').val());
+		});
+		$("#btrespuesta4").click(function() {
+			$('#rbtrespuesta4').val($(this).attr("value"));
+			//alert($('#rbtrespuesta4').val());
+		});
+		$("#btrespuesta5").click(function() {
+			$('#rbtrespuesta5').val($(this).attr("value"));
+			//alert($('#rbtrespuesta5').val());
+		});
+
+		
 	});
 </script>
 
@@ -126,7 +153,8 @@ function submenu(marca) {
 		$('#btrespuesta1').hide(); $('#btrespuesta2').hide(); $('#btrespuesta3').hide(); $('#btrespuesta4').hide(); $('#btrespuesta5').hide();
 		
 		var cont = 0;
-		$.ajax({    type : "GET",
+		$.ajax({    async: false,
+					type : "GET",
 					url : "http://CHD-QSISTEMS:8080/qp_score/rest/consultas/listaMarcas",
 					contentType : "application/json; charset=utf-8",
 					dataType : "json",
@@ -183,6 +211,7 @@ function pregunta(nombre_marca) {
 									{ 
 										nombre_marca=marca(response[index].id_marca_opcion_1);
 										$('#btrespuesta1').html(nombre_marca);
+										$("#btrespuesta1").attr("value",response[index].id_marca_opcion_1);
 										$('#btrespuesta1').show();									
 									}
 									
@@ -190,6 +219,7 @@ function pregunta(nombre_marca) {
 									{
 										nombre_marca=marca(response[index].id_marca_opcion_2);
 										$('#btrespuesta2').html(nombre_marca);
+										$("#btrespuesta2").attr("value",response[index].id_marca_opcion_2);
 										$('#btrespuesta2').show();									
 									}
 
@@ -197,6 +227,8 @@ function pregunta(nombre_marca) {
 									{ 
 										nombre_marca=marca(response[index].id_marca_opcion_3);
 										$('#btrespuesta3').html(nombre_marca);
+										$("#btrespuesta3").attr("value",response[index].id_marca_opcion_3);
+
 										$('#btrespuesta3').show();									
 									}
 
@@ -204,6 +236,7 @@ function pregunta(nombre_marca) {
 									{
 										nombre_marca=marca(response[index].id_marca_opcion_4);
 										$('#btrespuesta4').html(nombre_marca);
+										$("#btrespuesta4").attr("value",response[index].id_marca_opcion_4);
 										$('#btrespuesta4').show();									
 									}
 
@@ -211,6 +244,7 @@ function pregunta(nombre_marca) {
 									{
 										nombre_marca=marca(response[index].id_marca_opcion_5);
 										$('#btrespuesta5').html(nombre_marca);
+										$("#btrespuesta5").attr("value",response[index].id_marca_opcion_5);
 										$('#btrespuesta5').show();									
 									}
 
@@ -271,16 +305,16 @@ function marca(id_marca) {
 						<table border=0 width=100% cellspacing="0" cellpadding="0"text-align:center;>
 							<input type="hidden" name="ValCal" id="ValCal"></input>
 							<tr>
-								<td><button name="EXCELENTE" id="EXCELENTE" value=""
+								<td><button type="button" name="EXCELENTE" id="EXCELENTE" value=""
 										onclick="setTimeout(returnCalificacion, 5000);">EXCELENTE</button></td>
-								<td><button name="MUY_BUENO" id="MUY_BUENO" value=""
+								<td><button type="button" name="MUY_BUENO" id="MUY_BUENO" value=""
 										onclick="setTimeout(returnCalificacion, 5000);">MUY
 										BUENO</button></td>
-								<td><button name="BUENO" id="BUENO" value=""
+								<td><button type="button" name="BUENO" id="BUENO" value=""
 										onclick="setTimeout(returnCalificacion, 5000);">BUENO</button></td>
-								<td><button name="REGULAR" id="REGULAR" value=""
+								<td><button type="button" name="REGULAR" id="REGULAR" value=""
 										onclick="setTimeout(returnCalificacion, 5000);">REGULAR</button></td>
-								<td><button name="MALO" id="MALO" value=""
+								<td><button type="button" name="MALO" id="MALO" value=""
 										onclick="setTimeout(returnCalificacion, 5000);">MALO</button></td>
 							</tr>
 						</table>
@@ -289,26 +323,32 @@ function marca(id_marca) {
 					<div id="div2" style="display: none">
 						<table border=0 width=100% cellspacing="0" cellpadding="0"text-align:center;>
 							<tr>
-								<td><label id="question" name="question" >PREGUNTA PARAMETRO</label></td>
+								<input type="hidden" name="rquestion" id="rquestion"></input>
+								<td><label id="question" name="question" value="">PREGUNTA PARAMETRO</label></td>
 							</tr>
 							<tr>
-								<td><button id= "btrespuesta1" name= "btrespuesta1" hidden="hidden"
+								<input type="hidden" name="rbtrespuesta1" id="rbtrespuesta1"></input>
+								<td><button id= "btrespuesta1" name= "btrespuesta1" hidden="hidden" value=""
 										onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">...</button></td>
 							</tr>
 							<tr>
-								<td><button id= "btrespuesta2" name= "btrespuesta2" hidden="hidden"
+								<input type="hidden" name="rbtrespuesta2" id="rbtrespuesta2"></input>
+								<td><button id= "btrespuesta2" name= "btrespuesta2" hidden="hidden" value=""
 										onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">...</button></td>
 							</tr>
 							<tr>
-								<td><button id="btrespuesta3" name="btrespuesta3" hidden="hidden"
+								<input type="hidden" name="rbtrespuesta3" id="rbtrespuesta3"></input>
+								<td><button id="btrespuesta3" name="btrespuesta3" hidden="hidden" value=""
 										onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">...</button></td>
 							</tr>
 							<tr>
-								<td><button id="btrespuesta4" name="btrespuesta4" hidden="hidden"
+								<input type="hidden" name="rbtrespuesta4" id="rbtrespuesta4"></input>
+								<td><button id="btrespuesta4" name="btrespuesta4" hidden="hidden" value=""
 										onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">...</button></td>
 							</tr>
 							<tr>
-								<td><button id="btrespuesta5" name="btrespuesta5" hidden="hidden"
+								<input type="hidden" name="rbtrespuesta5" id="rbtrespuesta5"></input>
+								<td><button id="btrespuesta5" name="btrespuesta5" hidden="hidden" value=""
 										onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">...</button></td>
 							</tr>
 					</table>
