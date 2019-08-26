@@ -7,14 +7,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <script type="text/javascript" src="javascript/jquery.min.js"></script>
 
+
 <script>
 	//EJECUCION DE LA FUNCION INICIO
 	window.onload = inicio;
 	//FUNCION DENTRO DEL HEAD PARA LA EJECUCION CON EL CONTENIDO INICIAL DE LA PAGINA
 	function inicio() {
-		{ 
+		{ 	
 			var cont = 0;
-						async: false,  //prueba
+						async: false,  
 			$.ajax({    type : "GET",
 						url : "http://CHD-QSISTEMS:8080/qp_score/rest/consultas/listaMarcas",
 						contentType : "application/json; charset=utf-8",
@@ -310,79 +311,79 @@ function marca(id_marca) {
 <body>
 <!-- 	<form name="fmScore" method="post" action="calificaciones"> -->
 <!-- 	<form name="fmScore"> -->
-		<table width="100%" border="0" cellspacing="0" cellpadding="0"text-align:center;>
-			<tr>
-				<td>
-					<div id="div1">
-						<table border=0 width=100% cellspacing="0" cellpadding="0"text-align:center;>
-<!-- 							<input type="hidden" name="ValCal" id="ValCal"></input> -->
-							<tr>
-								<td><button type="button" name="EXCELENTE" id="EXCELENTE" value=""
-										onclick="setTimeout(returnCalificacion, 5000);">EXCELENTE</button></td>
-								<td><button type="button" name="MUY_BUENO" id="MUY_BUENO" value=""
-										onclick="setTimeout(returnCalificacion, 5000);">MUY
-										BUENO</button></td>
-								<td><button type="button" name="BUENO" id="BUENO" value=""
-										onclick="setTimeout(returnCalificacion, 5000);">BUENO</button></td>
-								<td><button type="button" name="REGULAR" id="REGULAR" value=""
-										onclick="setTimeout(returnCalificacion, 5000);">REGULAR</button></td>
-								<td><button type="button" name="MALO" id="MALO" value=""
-										onclick="setTimeout(returnCalificacion, 5000);">MALO</button></td>
-							</tr>
-						</table>
-					</div>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0"text-align:center;>
+		<tr>
+			<td>
+				<div id="div1">
+					<table border=0 width=100% cellspacing="0" cellpadding="0"text-align:center;>
+						<!-- 							<input type="hidden" name="ValCal" id="ValCal"></input> -->
+						<tr>
+							<td colspan="5" align="center"><label id="mprincipal" name="mprincipal" value="">SIRVA CALIFICAR NUESTRA ATENCION</label></td>
+						</tr>
+						<tr><tr></tr></tr><tr><tr></tr></tr><tr><tr></tr></tr><tr><tr></tr></tr>
+						<tr>
 
-					<div id="div2" style="display: none">
-						<table border=0 width=100% cellspacing="0" cellpadding="0"text-align:center;>
-							<tr>
-<!-- 								<input type="hidden" name="rquestion" id="rquestion"></input> -->
-								<td><label id="question" name="question" value="">PREGUNTA PARAMETRO</label></td>
-							</tr>
-							<tr>
-<!-- 								<input type="hidden" name="rbtrespuesta1" id="rbtrespuesta1"></input> -->
-								<td><button id= "btrespuesta1" name= "btrespuesta1" hidden="hidden" value=""
-										onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">...</button></td>
-							</tr>
-							<tr>
-<!-- 								<input type="hidden" name="rbtrespuesta2" id="rbtrespuesta2"></input> -->
-								<td><button id= "btrespuesta2" name= "btrespuesta2" hidden="hidden" value=""
-										onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">...</button></td>
-							</tr>
-							<tr>
-<!-- 								<input type="hidden" name="rbtrespuesta3" id="rbtrespuesta3"></input> -->
-								<td><button id="btrespuesta3" name="btrespuesta3" hidden="hidden" value=""
-										onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">...</button></td>
-							</tr>
-							<tr>
-<!-- 								<input type="hidden" name="rbtrespuesta4" id="rbtrespuesta4"></input> -->
-								<td><button id="btrespuesta4" name="btrespuesta4" hidden="hidden" value=""
-										onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">...</button></td>
-							</tr>
-							<tr>
-<!-- 								<input type="hidden" name="rbtrespuesta5" id="rbtrespuesta5"></input> -->
-								<td><button id="btrespuesta5" name="btrespuesta5" hidden="hidden" value=""
-										onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">...</button></td>
-							</tr>
+							<td><button type="button" name="EXCELENTE" id="EXCELENTE"
+									value="" onclick="setTimeout(returnCalificacion, 5000);">EXCELENTE</button></td>
+							<td><button type="button" name="MUY_BUENO" id="MUY_BUENO"
+									value="" onclick="setTimeout(returnCalificacion, 5000);">MUY
+									BUENO</button></td>
+							<td><button type="button" name="BUENO" id="BUENO" value=""
+									onclick="setTimeout(returnCalificacion, 5000);">BUENO</button></td>
+							<td><button type="button" name="REGULAR" id="REGULAR"
+									value="" onclick="setTimeout(returnCalificacion, 5000);">REGULAR</button></td>
+							<td><button type="button" name="MALO" id="MALO" value=""
+									onclick="setTimeout(returnCalificacion, 5000);">MALO</button></td>
+						</tr>
 					</table>
-					</div>
+				</div>
+
+				<div id="div2" style="display: none">
+					<table border=0 width=100% cellspacing="0" cellpadding="0"text-align:center;>
+						<tr>
+							<td><label id="question" name="question" value="" align="center">PREGUNTA PARAMETRO</label></td>
+						</tr>
+						<tr>
+							<td><button id="btrespuesta1" name="btrespuesta1"
+									hidden="hidden" value=""
+									onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">...</button></td>
+						
+							<td><button id="btrespuesta2" name="btrespuesta2"
+									hidden="hidden" value=""
+									onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">...</button></td>
+
+							<td><button id="btrespuesta3" name="btrespuesta3"
+									hidden="hidden" value=""
+									onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">...</button></td>
+
+							<td><button id="btrespuesta4" name="btrespuesta4"
+									hidden="hidden" value=""
+									onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">...</button></td>
+
+							<td><button id="btrespuesta5" name="btrespuesta5"
+									hidden="hidden" value=""
+									onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">...</button></td>
+						</tr>
+					</table>
+				</div>
 
 
-					<div id="div3" style="display: none">
-						<table border=0 width=100% cellspacing="0" cellpadding="0"text-align:center;>
-							<tr>
-								<td>GRACIAS POR CALIFICAR NUESTRO SERVICIO</td>
-							</tr>
-							<tr>
-								<td>ES UN PLACER ATENDERLO</td>
-							</tr>
-						</table>
-					</div>
+				<div id="div3" style="display: none">
+					<table border=0 width=100% cellspacing="0" cellpadding="0"text-align:center;>
+						<tr>
+							<td>DIV</td>
+						</tr>
+						<tr>
+							<td>3</td>
+						</tr>
+					</table>
+				</div>
 
-				</td>
-			</tr>
-		</table>
-		
-		<form name="fmScore" method="post" action="calificaciones">		
+			</td>
+		</tr>
+	</table>
+
+	<form name="fmScore" method="post" action="calificaciones">		
 
 			<input type="hidden" name="ValCal" id="ValCal" value=0></input>
 			<input type="hidden" name="rquestion" id="rquestion" value=0></input>

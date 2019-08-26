@@ -94,36 +94,7 @@ public class calificaciones extends HttpServlet {
 								 id_marca_encuesta= Integer.parseInt(request.getParameter("rbtrespuesta5"));
 							 }
 			 
-//     			if(request.getParameter("rquestion") != null)
-//				{
-//     				rquestion = Integer.parseInt(request.getParameter("rquestion"));
-//				}
-//     			else 
-//     			{
-//     				rquestion=0;
-//     			}
-/*			int id_marca2=0;		
-			if(request.getParameter("EXCELENTE") != null)
-			{
-				id_marca2= Integer.parseInt(request.getParameter("EXCELENTE"));
-			}else
-				if(request.getParameter("MUY_BUENO") != null)
-				{
-					id_marca2= Integer.parseInt(request.getParameter("MUY_BUENO"));
-				}else
-					if(request.getParameter("BUENO") != null)
-					{
-						id_marca2= Integer.parseInt(request.getParameter("BUENO"));
-					}else
-						if(request.getParameter("REGULAR") != null)
-						{
-							id_marca2= Integer.parseInt(request.getParameter("REGULAR"));
-						}else
-							if(request.getParameter("MALO") != null)
-							{
-								id_marca2= Integer.parseInt(request.getParameter("MALO"));
-							}*/
-			
+
 			
 			stmt.executeUpdate("INSERT INTO [dbo].[qp_score]([id_marca],[id_encuesta],[id_marca_encuesta],[fecha_creacion],[hora_creacion]) VALUES('" + id_marca+ "','" + rquestion+ "','" +id_marca_encuesta +"','" + fecha_creacion+ "','" +  hora_creacion+"')");
 			response.sendRedirect("index.html");
