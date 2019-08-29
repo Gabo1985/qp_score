@@ -2,7 +2,7 @@
 
 #div0 {
   background-image:url("../images/publicidad.png");
-	background-size:     cover;                      /* <------ */
+	background-size:     cover;
     background-repeat:   no-repeat;
     background-position: center center;  
 	position:fixed;
@@ -53,8 +53,54 @@
 	text-align: center; 
 }
 
+
+button {
+    background-image: url( '../images/calificacion.png' );
+    background-size: 100px 130px;
+    height: 90px;  
+    width: 140px;
+    background-color: #1883ba;
+    border-radius: 6px;
+    border: 2px solid #0016b0;
+/*     -webkit-appearance: button; */
+/*     -webkit-writing-mode: horizontal-tb !important; */
+/*     text-rendering: auto; */
+/*     color: red; */
+/*     letter-spacing: normal; */
+/*     word-spacing: normal; */
+/*     text-transform: none; */
+/*     text-indent: 0px; */
+/*     text-shadow: none; */
+/*     display: inline-block; */
+/*     text-align: center; */
+/*     align-items: flex-start; */
+/*     cursor: default; */
+/*     background-color: buttonface; */
+/*     box-sizing: border-box; */
+/*     margin: 0em; */
+/*     font: 400 13.3333px Arial; */
+/*     padding: 1px 6px; */
+/*     border-width: 2px; */
+/*     border-style: outset; */
+/*     border-color: buttonface; */
+/*     border-image: initial; */
+    
+}
+
+#EXCELENTE{
+    background-image: url( '../images/excelente.png' );
+    background-size: 100px 130px;
+    height: 90px;  
+    width: 140px;    
+}
+
+
+
 #mprincipal {
 	color: red;
     font-size: 30px;
 #div3 {
+
+
+
  
