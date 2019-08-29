@@ -307,28 +307,34 @@ function marca(id_marca) {
 <body>
 <!-- 	<form name="fmScore" method="post" action="calificaciones"> -->
 <!-- 	<form name="fmScore"> -->
-	<table width="100%" border="0" cellspacing="0" cellpadding="0"text-align:center;>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align:center;">
 		<tr>
 			<td>
 				<div id="div1">
-					<table border=0 width=100% cellspacing="0" cellpadding="0"text-align:center;>
-						<!-- 							<input type="hidden" name="ValCal" id="ValCal"></input> -->
+					<table border=0 width=100% cellspacing="0" cellpadding="0" style="text-align:center;">
 						<tr>
 							<td colspan="5" align="center"><label id="mprincipal" name="mprincipal" value="">SIRVA CALIFICAR NUESTRA ATENCION</label></td>
 						</tr>
 						
 						<tr>
-							<td><button type="button" name="EXCELENTE" id="EXCELENTE" 
-									value="" onclick="setTimeout(returnCalificacion, 5000);">EXCELENTE</button></td>
-							<td><button type="button" name="MUY_BUENO" id="MUY_BUENO"
-									value="" onclick="setTimeout(returnCalificacion, 5000);">MUY
-									BUENO</button></td>
-							<td><button type="button" name="BUENO" id="BUENO" value=""
-									onclick="setTimeout(returnCalificacion, 5000);">BUENO</button></td>
-							<td><button type="button" name="REGULAR" id="REGULAR"
-									value="" onclick="setTimeout(returnCalificacion, 5000);">REGULAR</button></td>
-							<td><button type="button" name="MALO" id="MALO" value=""
-									onclick="setTimeout(returnCalificacion, 5000);">MALO</button></td>
+							<td><button class="EXCELENTE" type="button" name="EXCELENTE" id="EXCELENTE" 
+							value="" onclick="setTimeout(returnCalificacion, 5000);"></button></td>
+							<td><button class="MUY_BUENO" type="button" name="MUY_BUENO" id="MUY_BUENO"
+									value="" onclick="setTimeout(returnCalificacion, 5000);">
+									</button></td>
+							<td><button class="BUENO" type="button" name="BUENO" id="BUENO" value=""
+									onclick="setTimeout(returnCalificacion, 5000);"></button></td>
+							<td><button class="REGULAR" type="button" name="REGULAR" id="REGULAR"
+									value="" onclick="setTimeout(returnCalificacion, 5000);"></button></td>
+							<td><button class="MALO" type="button" name="MALO" id="MALO" value=""
+									onclick="setTimeout(returnCalificacion, 5000);"></button></td>
+						</tr>
+						<tr>
+						<td><label>EXCELENTE </label></td>
+						<td><label> MUY BUENO</label></td>
+						<td><label> BUENO</label></td>
+						<td><label> MALO</label></td>
+						<td><label> MUY MALO</label></td>
 						</tr>
 					</table>
 				</div>
