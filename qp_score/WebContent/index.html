@@ -9,12 +9,13 @@
 <script type="text/javascript" src="javascript/jquery.min.js"></script>
 
 
-<script>
-	//EJECUCION DE LA FUNCION INICIO
+<script>  	//EJECUCION DE LA FUNCION INICIO
+
 	window.onload = inicio;
-	//FUNCION DENTRO DEL HEAD PARA LA EJECUCION CON EL CONTENIDO INICIAL DE LA PAGINA
+	//EJECUCION INICIAL 
 	function inicio() {
 		{ 	
+
 			var cont = 0;
 						async: false,  
 			$.ajax({    type : "GET",
@@ -24,30 +25,33 @@
 						success : function(response) {
 
 							$.each(response,function(index, product) {
-								cont++;
+								
+								//PINTADO DE IMAGEN DESDE BASE DE DATOS
+								$("#"+ response[index].nombre_marca).css("background-image", "url('"+ response[index].ruta_objeto_marca + "' )");
+
 								if(response[index].nombre_marca=="EXCELENTE")			
 								{
 									$("#EXCELENTE").attr("value",response[index].id_marca);
 									$("#EXCELENTE").attr("id",response[index].id_marca);
-								}else
+								}
 									if(response[index].nombre_marca=="MUY BUENO")			
-									{
+									{	$("#MUY_BUENO").css("background-image", "url('"+ response[index].ruta_objeto_marca + "' )");
 										$("#MUY_BUENO").attr("value",response[index].id_marca);
 										$("#MUY_BUENO").attr("id",response[index].id_marca);
-										}else
+										}
 										if(response[index].nombre_marca=="BUENO")			
-										{
+										{	
 											$("#BUENO").attr("value",response[index].id_marca);
 											$("#BUENO").attr("id",response[index].id_marca);
 											
-										}else
+										}
 											if(response[index].nombre_marca=="REGULAR")			
-											{
+											{	
 												$("#REGULAR").attr("value",response[index].id_marca);
 												$("#REGULAR").attr("id",response[index].id_marca);
-											}else
+											}
 												if(response[index].nombre_marca=="MALO")			
-											{
+											{	
 													$("#MALO").attr("value",response[index].id_marca);
 													$("#MALO").attr("id",response[index].id_marca);
 											}
@@ -64,9 +68,9 @@
 	}
 </script>
 
-<script>
+<script>  	// NAVEGACION ENTRE DIV
 
-	// NAVEGACION ENTRE DIV
+
 	function showDiv(n) {
 		document.getElementById("div" + n).style.display = 'block'
 		return false;
@@ -90,15 +94,195 @@
 	
 	function returnCalificacion() {
 		toggleDiv("div1");
-		 //$('#enviar').click();
-		 //$("#enviar").click();
-		 //$('#enviar').click();
 		 $('#enviar').click();
 	}
+</script>  
+
+
+<script>  //VALIDACION SUBMENÚ DE TODOS LOS BOTONES.
+
+function submenu(marca) {
+	var nombre_marca = marca;
+	{
+		$('#btrespuesta1').hide(); $('#btrespuesta2').hide(); $('#btrespuesta3').hide(); $('#btrespuesta4').hide(); $('#btrespuesta5').hide();
+		
+		var cont = 0;
+		$.ajax({    async: false,
+					type : "GET",
+					url : "http://CHD-QSISTEMS:8080/qp_score/rest/consultas/listaMarcas",
+					contentType : "application/json; charset=utf-8",
+					dataType : "json",
+					success : function(response) {
+						$.each(response,function(index, product) {
+							cont++;							
+							if(response[index].nombre_marca== nombre_marca)			
+							{
+								if(nombre_marca =="MUY BUENO")
+									{nombre_marca= "MUY_BUENO"}
+								if(response[index].opcion_pregunta== 1)
+								{
+									
+									$("#" + nombre_marca).on("click",toggleDiv('div2'));  // DIV 2 ES PREGUNTAS
+									pregunta(nombre_marca);
+								}else		
+								{
+									$("#" + nombre_marca).on("click",toggleDiv('div3'));  // DIV 3 ES GRACIAS	
+								}
+							}
+						}); // FIN EACH
+					},
+					error : function(response) {
+						console.log("error");
+					}
+				});
+	} // AJAX
+
+}
 </script>
 
-<script>
-	// ASIGNACION DE CALIFICACION EN INPUT
+<script> // FUNCION DE PINTADO DE PREGUNTA 
+
+function pregunta(nombre_marca) {
+		{ // FUNCION DE CARGA DE PREGUNTAS EN PANTALLA SOBRE LABEL
+			var nombre_marca_p=nombre_marca;
+			var cont = 0;
+			var id_marca;
+			var nombre_marca;
+			$.ajax({    async: false,
+						type : "GET",
+						url : "http://chd-qsistems:8080/qp_score/rest/consultas/listaEncuesta",
+						contentType : "application/json; charset=utf-8",
+						dataType : "json",
+						success : function(response) {
+
+							$.each(response,function(index, product) {
+							if(response[index].nombre_marca == nombre_marca_p)	
+								{
+									$("#btrespuesta1").css("background-image", "url('"+ rutaO(response[index].id_marca_opcion_1) + "' )");
+									$("#question").text(response[index].pregunta_encuesta);
+									//$("#rquestion").text(response[index].id_encuesta);
+									$("#rquestion").attr("value",response[index].id_encuesta);
+									//$('#ValCal').val($(response[index].id_encuesta).attr("id"));
+									id_marca=response[index].id_marca_opcion_1;
+
+									if(response[index].id_marca_opcion_1 != "null")
+									{   $("#btrespuesta1").css("background-image", "url('"+ rutaO(response[index].id_marca_opcion_1) + "' )");
+										nombre_marca=marca(response[index].id_marca_opcion_1);
+										$('#btrespuesta1').html(nombre_marca);
+										$("#btrespuesta1").attr("value",response[index].id_marca_opcion_1);
+										$('#btrespuesta1').show();									
+									}
+									
+									if(response[index].id_marca_opcion_2 != "null")
+									{	$("#btrespuesta2").css("background-image", "url('"+ rutaO(response[index].id_marca_opcion_1) + "' )");
+										nombre_marca=marca(response[index].id_marca_opcion_2);
+										$('#btrespuesta2').html(nombre_marca);
+										$("#btrespuesta2").attr("value",response[index].id_marca_opcion_2);
+										$('#btrespuesta2').show();									
+									}
+
+									if(response[index].id_marca_opcion_3 != "null")
+									{ 	$("#btrespuesta3").css("background-image", "url('"+ rutaO(response[index].id_marca_opcion_1) + "' )");
+										nombre_marca=marca(response[index].id_marca_opcion_3);
+										$('#btrespuesta3').html(nombre_marca);
+										$("#btrespuesta3").attr("value",response[index].id_marca_opcion_3);
+
+										$('#btrespuesta3').show();									
+									}
+
+									if(response[index].id_marca_opcion_4 != "null")
+									{	$("#btrespuesta4").css("background-image", "url('"+ rutaO(response[index].id_marca_opcion_1) + "' )");
+										nombre_marca=marca(response[index].id_marca_opcion_4);
+										$('#btrespuesta4').html(nombre_marca);
+										$("#btrespuesta4").attr("value",response[index].id_marca_opcion_4);
+										$('#btrespuesta4').show();									
+									}
+
+									if(response[index].id_marca_opcion_5 != "null")
+									{	$("#btrespuesta5").css("background-image", "url('"+ rutaO(response[index].id_marca_opcion_1) + "' )");
+										nombre_marca=marca(response[index].id_marca_opcion_5);
+										$('#btrespuesta5').html(nombre_marca);
+										$("#btrespuesta5").attr("value",response[index].id_marca_opcion_5);
+										$('#btrespuesta5').show();									
+									}
+
+								}	
+							}); // FIN EACH
+
+						},
+						error : function(response) {
+							console.log("error");
+						}
+					});
+		}// FIN DE LA FUNCION DE INICIO
+}
+</script>
+
+<script>   //FUNCION CONSULTA DE DIFERENTES MARCAS.
+
+function marca(id_marca) {
+		{ 
+			var id_marca_p=id_marca;
+			var cont = 0;
+			var retorno;
+			$.ajax({    async: false,
+						type : "GET",
+						url : "http://CHD-QSISTEMS:8080/qp_score/rest/consultas/listaMarcas",
+						contentType : "application/json; charset=utf-8",
+						dataType : "json",
+						success : function(response) {
+
+							$.each(response,function(index, product) {
+							if(response[index].id_marca == id_marca_p)	
+								{
+									retorno=response[index].nombre_marca;
+								}
+							}); // FIN EACH
+
+						},
+						error : function(response) {
+							console.log("error");
+						}
+					});
+		}// 
+		return retorno;	
+  }
+
+</script>
+
+<script>   //FUNCION CONSULTA Y RETORNO RUTA DE IMAGEN.
+
+function rutaO(id_marca) {
+		{ 
+			var id_marca_p=id_marca;
+			var cont = 0;
+			var retorno;
+			$.ajax({    async: false,
+						type : "GET",
+						url : "http://CHD-QSISTEMS:8080/qp_score/rest/consultas/listaMarcas",
+						contentType : "application/json; charset=utf-8",
+						dataType : "json",
+						success : function(response) {
+
+							$.each(response,function(index, product) {
+							if(response[index].id_marca == id_marca_p)	
+								{
+									retorno=response[index].ruta_objeto_marca;
+								}
+							}); // FIN EACH
+
+						},
+						error : function(response) {
+							console.log("error");
+						}
+					});
+		}// 
+		return retorno;	
+  }
+
+</script>
+
+<script>   	// ASIGNACION DE CALIFICACION EN INPUT
 
 	$(document).ready(function() {
 		$("#EXCELENTE").click(function() {
@@ -150,158 +334,6 @@
 	});
 </script>
 
-<script>
-//VALIDACION SUBMENÚ DE TODOS LOS BOTONES.
-function submenu(marca) {
-	var nombre_marca = marca;
-	{
-		$('#btrespuesta1').hide(); $('#btrespuesta2').hide(); $('#btrespuesta3').hide(); $('#btrespuesta4').hide(); $('#btrespuesta5').hide();
-		
-		var cont = 0;
-		$.ajax({    async: false,
-					type : "GET",
-					url : "http://CHD-QSISTEMS:8080/qp_score/rest/consultas/listaMarcas",
-					contentType : "application/json; charset=utf-8",
-					dataType : "json",
-					success : function(response) {
-						$.each(response,function(index, product) {
-							cont++;							
-							if(response[index].nombre_marca== nombre_marca)			
-							{
-								if(nombre_marca =="MUY BUENO")
-									{nombre_marca= "MUY_BUENO"}
-								if(response[index].opcion_pregunta== 1)
-								{
-									
-									$("#" + nombre_marca).on("click",toggleDiv('div2'));  // DIV 2 ES PREGUNTAS
-									pregunta(nombre_marca);
-								}else		
-								{
-									$("#" + nombre_marca).on("click",toggleDiv('div3'));  // DIV 3 ES GRACIAS	
-								}
-							}
-						}); // FIN EACH
-					},
-					error : function(response) {
-						console.log("error");
-					}
-				});
-	} // AJAX
-
-}
-</script>
-
-<script>
-// FUNCION DE PINTADO DE PREGUNTA 
-function pregunta(nombre_marca) {
-		{ // FUNCION DE CARGA DE PREGUNTAS EN PANTALLA SOBRE LABEL
-			var nombre_marca_p=nombre_marca;
-			var cont = 0;
-			var id_marca;
-			var nombre_marca;
-			$.ajax({    async: false,
-						type : "GET",
-						url : "http://chd-qsistems:8080/qp_score/rest/consultas/listaEncuesta",
-						contentType : "application/json; charset=utf-8",
-						dataType : "json",
-						success : function(response) {
-
-							$.each(response,function(index, product) {
-							if(response[index].nombre_marca == nombre_marca_p)	
-								{
-									$("#question").text(response[index].pregunta_encuesta);
-									//$("#rquestion").text(response[index].id_encuesta);
-									$("#rquestion").attr("value",response[index].id_encuesta);
-									//$('#ValCal').val($(response[index].id_encuesta).attr("id"));
-									id_marca=response[index].id_marca_opcion_1;
-
-									if(response[index].id_marca_opcion_1 != "null")
-									{ 
-										nombre_marca=marca(response[index].id_marca_opcion_1);
-										$('#btrespuesta1').html(nombre_marca);
-										$("#btrespuesta1").attr("value",response[index].id_marca_opcion_1);
-										$('#btrespuesta1').show();									
-									}
-									
-									if(response[index].id_marca_opcion_2 != "null")
-									{
-										nombre_marca=marca(response[index].id_marca_opcion_2);
-										$('#btrespuesta2').html(nombre_marca);
-										$("#btrespuesta2").attr("value",response[index].id_marca_opcion_2);
-										$('#btrespuesta2').show();									
-									}
-
-									if(response[index].id_marca_opcion_3 != "null")
-									{ 
-										nombre_marca=marca(response[index].id_marca_opcion_3);
-										$('#btrespuesta3').html(nombre_marca);
-										$("#btrespuesta3").attr("value",response[index].id_marca_opcion_3);
-
-										$('#btrespuesta3').show();									
-									}
-
-									if(response[index].id_marca_opcion_4 != "null")
-									{
-										nombre_marca=marca(response[index].id_marca_opcion_4);
-										$('#btrespuesta4').html(nombre_marca);
-										$("#btrespuesta4").attr("value",response[index].id_marca_opcion_4);
-										$('#btrespuesta4').show();									
-									}
-
-									if(response[index].id_marca_opcion_5 != "null")
-									{
-										nombre_marca=marca(response[index].id_marca_opcion_5);
-										$('#btrespuesta5').html(nombre_marca);
-										$("#btrespuesta5").attr("value",response[index].id_marca_opcion_5);
-										$('#btrespuesta5').show();									
-									}
-
-								}	
-							}); // FIN EACH
-
-						},
-						error : function(response) {
-							console.log("error");
-						}
-					});
-		}// FIN DE LA FUNCION DE INICIO
-}
-</script>
-
-<script>
-//FUNCION CONSULTA DE DIFERENTES MARCAS.
-
-function marca(id_marca) {
-		{ 
-			var id_marca_p=id_marca;
-			var cont = 0;
-			var retorno;
-			$.ajax({    async: false,
-						type : "GET",
-						url : "http://CHD-QSISTEMS:8080/qp_score/rest/consultas/listaMarcas",
-						contentType : "application/json; charset=utf-8",
-						dataType : "json",
-						success : function(response) {
-
-							$.each(response,function(index, product) {
-							if(response[index].id_marca == id_marca_p)	
-								{
-									retorno=response[index].nombre_marca;
-								}
-							}); // FIN EACH
-
-						},
-						error : function(response) {
-							console.log("error");
-						}
-					});
-		}// 
-		return retorno;	
-  }
-
-</script>
-
-
 </head>
 
 <body>
@@ -345,23 +377,23 @@ function marca(id_marca) {
 							<td><label id="question" name="question" value="" align="center">PREGUNTA PARAMETRO</label></td>
 						</tr>
 						<tr>
-							<td><button id="btrespuesta1" name="btrespuesta1"
+							<td><button id="btrespuesta1" name="btrespuesta1" class="btrespuesta1"
 									hidden="hidden" value=""
 									onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">...</button></td>
 						
-							<td><button id="btrespuesta2" name="btrespuesta2"
+							<td><button id="btrespuesta2" name="btrespuesta2" class="btrespuesta2"
 									hidden="hidden" value=""
 									onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">...</button></td>
 
-							<td><button id="btrespuesta3" name="btrespuesta3"
+							<td><button id="btrespuesta3" name="btrespuesta3" class="btrespuesta3"
 									hidden="hidden" value=""
 									onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">...</button></td>
 
-							<td><button id="btrespuesta4" name="btrespuesta4"
+							<td><button id="btrespuesta4" name="btrespuesta4" class="btrespuesta4"
 									hidden="hidden" value=""
 									onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">...</button></td>
 
-							<td><button id="btrespuesta5" name="btrespuesta5"
+							<td><button id="btrespuesta5" name="btrespuesta5" class="btrespuesta5"
 									hidden="hidden" value=""
 									onclick="toggleDiv('div3');setTimeout(returnCalificacion, 3000);">...</button></td>
 						</tr>

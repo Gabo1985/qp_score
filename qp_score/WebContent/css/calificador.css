@@ -55,7 +55,7 @@
 
 
 button {
-    background-image: url( '../images/calificacion.png' );
+/*     background-image: url( '../images/calificacion.png' ); */
     background-size: 100px 130px;
     height: 90px;  
     width: 140px;
@@ -88,7 +88,7 @@ button {
 }
 
 .EXCELENTE{
-    background-image: url( '../images/cfu_1.png' );
+/*     background-image: url( '../images/cfu_1.png' ); */
     background-color: Transparent;
 	background-repeat:round;
     border: none;
@@ -100,7 +100,7 @@ button {
 }
 
 .MUY_BUENO{
-    background-image: url( '../images/cfu_2.png' );
+/*     background-image: url( '../images/cfu_2.png' ); */
     background-color: Transparent;
 	background-repeat:round;
     border: none;
@@ -111,7 +111,7 @@ button {
     width: 140px;    
 }
 .BUENO{
-    background-image: url( '../images/cfu_3.png' );
+/*     background-image: url( '../images/cfu_3.png' ); */
     background-color: Transparent;
 	background-repeat:round;
     border: none;
@@ -122,7 +122,7 @@ button {
     width: 140px;    
 }
 .REGULAR{
-    background-image: url( '../images/cfu_4.png' );
+/*     background-image: url( '../images/cfu_4.png' ); */
     background-color: Transparent;
 	background-repeat:round;
     border: none;
@@ -133,7 +133,7 @@ button {
     width: 140px;    
 }
 .MALO{
-    background-image: url( '../images/cfu_5.png' );
+/*     background-image: url( '../images/cfu_5.png' ); */
     background-color: Transparent;
 	background-repeat:round;
     border: none;
@@ -152,6 +152,63 @@ button {
 #mprincipal {
 	color: red;
     font-size: 30px;
+}
+
+
+.btrespuesta1{
+/*     background-image: url( '../images/cfu_1.png' ); */
+    background-color: Transparent;
+	background-repeat:round;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    background-size: 130px 130px;
+    height: 150px;  
+    width: 140px;    
+}
+.btrespuesta2{
+/*     background-image: url( '../images/cfu_1.png' ); */
+    background-color: Transparent;
+	background-repeat:round;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    background-size: 130px 130px;
+    height: 150px;  
+    width: 140px;    
+}
+.btrespuesta3{
+/*     background-image: url( '../images/cfu_1.png' ); */
+    background-color: Transparent;
+	background-repeat:round;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    background-size: 130px 130px;
+    height: 150px;  
+    width: 140px;    
+}
+.btrespuesta4{
+/*     background-image: url( '../images/cfu_1.png' ); */
+    background-color: Transparent;
+	background-repeat:round;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    background-size: 130px 130px;
+    height: 150px;  
+    width: 140px;    
+}
+.btrespuesta5{
+/*     background-image: url( '../images/cfu_1.png' ); */
+    background-color: Transparent;
+	background-repeat:round;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    background-size: 130px 130px;
+    height: 150px;  
+    width: 140px;    
 }
 
 

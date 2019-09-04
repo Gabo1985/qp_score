@@ -51,11 +51,12 @@ public class scoreinfo {
 			String fecha_creacion;
 			String estado;
 			String opcion_pregunta;
+			String ruta_objeto_marca;
 
 			con = conexionDB.getConnection();
 			stmt = con.createStatement();
 
-			rs = stmt.executeQuery("select id_marca,nombre_marca,id_tipo_marca,fecha_creacion,opcion_pregunta,estado from qp_marca");
+			rs = stmt.executeQuery("select id_marca,nombre_marca,id_tipo_marca,fecha_creacion,opcion_pregunta,estado,ruta_objeto_marca from qp_marca");
 
 			String result = "";
 
@@ -68,6 +69,7 @@ public class scoreinfo {
 				fecha_creacion = rs.getString(4);
 				opcion_pregunta= rs.getString(5);
 				estado = rs.getString(6);
+				ruta_objeto_marca = rs.getString(7);
 
 				result += "{";
 
@@ -89,7 +91,10 @@ public class scoreinfo {
 				result += "\"" + opcion_pregunta + "\",";
 
 				result += "\"estado\":";
-				result += "\"" + estado + "\"";
+				result += "\"" + estado + "\",";
+				
+				result += "\"ruta_objeto_marca\":";
+				result += "\"" + ruta_objeto_marca + "\"";
 
 				result += "}";
 
@@ -207,4 +212,7 @@ public class scoreinfo {
 		return null;
 
 	}
+	
+
+
 }
