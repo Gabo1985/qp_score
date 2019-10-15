@@ -211,7 +211,69 @@ public class scoreinfo {
 		}
 		return null;
 
-	}
+	}		
+		
+		@GET
+		@Path("/contenedor")
+		public String getPlain3() {
+			Connection con = null;
+			Statement stmt = null;
+			ResultSet rs = null;
+
+			try {
+
+				String id_contenedor;
+				String nombre_contenedor;
+				String ruta_objeto_contenedor;
+				
+				con = conexionDB.getConnection();
+				stmt = con.createStatement();
+
+				rs = stmt.executeQuery("select id_contenedor,nombre_contenedor,ruta_objeto_contenedor from qp_contenedor");
+
+				String result = "";
+
+				result += "[";
+				while (rs.next()) {
+
+					id_contenedor = rs.getString(1);
+					nombre_contenedor = rs.getString(2);
+					ruta_objeto_contenedor = rs.getString(3);
+
+
+					result += "{";
+
+					result += "\"id_contenedor\":";
+
+					result += "\"" + id_contenedor + "\",";
+
+					result += "\"nombre_contenedor\":";
+					result += "\"" + nombre_contenedor + "\",";
+					
+					result += "\"ruta_objeto_contenedor\":";
+					result += "\"" + ruta_objeto_contenedor + "\"";
+
+					result += "}";
+
+					result += ",";
+				}
+				result = result.substring(0, result.length() - 1);
+				result += "]";
+
+				return result;
+
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+			return null;
+
+		}
+		
+		//------------------------------------------------------------------------------------------------------------
+
+		
+		
+
 	
 
 

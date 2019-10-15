@@ -9,6 +9,7 @@
 <script type="text/javascript" src="javascript/jquery.min.js"></script>
 
 
+
 <script>  	//EJECUCION DE LA FUNCION INICIO
 
 	window.onload = inicio;
@@ -174,7 +175,7 @@ function pregunta(nombre_marca) {
 									}
 									
 									if(response[index].id_marca_opcion_2 != "null")
-									{	$("#btrespuesta2").css("background-image", "url('"+ rutaO(response[index].id_marca_opcion_1) + "' )");
+									{	$("#btrespuesta2").css("background-image", "url('"+ rutaO(response[index].id_marca_opcion_2) + "' )");
 										nombre_marca=marca(response[index].id_marca_opcion_2);
 										$('#btrespuesta2').html(nombre_marca);
 										$("#btrespuesta2").attr("value",response[index].id_marca_opcion_2);
@@ -182,7 +183,7 @@ function pregunta(nombre_marca) {
 									}
 
 									if(response[index].id_marca_opcion_3 != "null")
-									{ 	$("#btrespuesta3").css("background-image", "url('"+ rutaO(response[index].id_marca_opcion_1) + "' )");
+									{ 	$("#btrespuesta3").css("background-image", "url('"+ rutaO(response[index].id_marca_opcion_3) + "' )");
 										nombre_marca=marca(response[index].id_marca_opcion_3);
 										$('#btrespuesta3').html(nombre_marca);
 										$("#btrespuesta3").attr("value",response[index].id_marca_opcion_3);
@@ -191,7 +192,7 @@ function pregunta(nombre_marca) {
 									}
 
 									if(response[index].id_marca_opcion_4 != "null")
-									{	$("#btrespuesta4").css("background-image", "url('"+ rutaO(response[index].id_marca_opcion_1) + "' )");
+									{	$("#btrespuesta4").css("background-image", "url('"+ rutaO(response[index].id_marca_opcion_4) + "' )");
 										nombre_marca=marca(response[index].id_marca_opcion_4);
 										$('#btrespuesta4').html(nombre_marca);
 										$("#btrespuesta4").attr("value",response[index].id_marca_opcion_4);
@@ -199,7 +200,7 @@ function pregunta(nombre_marca) {
 									}
 
 									if(response[index].id_marca_opcion_5 != "null")
-									{	$("#btrespuesta5").css("background-image", "url('"+ rutaO(response[index].id_marca_opcion_1) + "' )");
+									{	$("#btrespuesta5").css("background-image", "url('"+ rutaO(response[index].id_marca_opcion_5) + "' )");
 										nombre_marca=marca(response[index].id_marca_opcion_5);
 										$('#btrespuesta5').html(nombre_marca);
 										$("#btrespuesta5").attr("value",response[index].id_marca_opcion_5);
