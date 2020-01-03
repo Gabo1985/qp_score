@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import java.lang.Thread;
+
 import com.qmatic.conexionDB;
 
 /**
@@ -98,6 +100,19 @@ public class calificaciones extends HttpServlet {
 			
 			stmt.executeUpdate("INSERT INTO [dbo].[qp_score]([id_marca],[id_encuesta],[id_marca_encuesta],[fecha_creacion],[hora_creacion]) VALUES('" + id_marca+ "','" + rquestion+ "','" +id_marca_encuesta +"','" + fecha_creacion+ "','" +  hora_creacion+"')");
 			response.sendRedirect("index.html");
+			
+			
+			// CAMBIO DE ESTADO PARA SEGUIR REPRODUCIENDO O NO VIDEO AL INICIO DEL SISTEMA DE CALIFICACIÓN
+			try {
+				Thread.sleep(10);
+				} catch (InterruptedException ex) {
+				// aquí tratamos la excepción como queramos, haciendo nada, sacando por pantalla el error, ...
+				}
+			stmt.executeUpdate("UPDATE [dbo].[qp_media]   SET media = '1' WHERE media = '0' and activado ='1'");
+			
+			//---------------------------------------------------------------------------------------------------------
+			
+			
 			//para los GET
 			//rs = stmt.executeQuery("select * from dbo.calificaciones  where id = ");
 			//rs = stmt.executeQuery("select * from dbo.qp_encuesta  where modulo ='1' and estado = '0'");

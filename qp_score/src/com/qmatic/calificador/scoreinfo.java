@@ -213,7 +213,8 @@ public class scoreinfo {
 
 	}		
 		
-		@GET
+	//------------------------------------------------------------------------------------------------------------
+	@GET
 		@Path("/contenedor")
 		public String getPlain3() {
 			Connection con = null;
@@ -272,6 +273,64 @@ public class scoreinfo {
 		//------------------------------------------------------------------------------------------------------------
 
 		
+	//------------------------------------------------------------------------------------------------------------
+	@GET
+		@Path("/media")
+		public String getPlain4() {
+			Connection con = null;
+			Statement stmt = null;
+			ResultSet rs = null;
+
+			try {
+
+				String id_media;
+				String media;
+				String media_ruta;
+				
+				con = conexionDB.getConnection();
+				stmt = con.createStatement();
+
+				rs = stmt.executeQuery("select id_media,media,media_ruta from qp_media");
+
+				String result = "";
+
+				result += "[";
+				while (rs.next()) {
+
+					id_media = rs.getString(1);
+					media = rs.getString(2);
+					media_ruta = rs.getString(3);
+
+
+					result += "{";
+
+					result += "\"id_media\":";
+
+					result += "\"" + id_media + "\",";
+
+					result += "\"media\":";
+					result += "\"" + media + "\",";
+					
+					result += "\"media_ruta\":";
+					result += "\"" + media_ruta + "\"";
+
+					result += "}";
+
+					result += ",";
+				}
+				result = result.substring(0, result.length() - 1);
+				result += "]";
+
+				return result;
+
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+			return null;
+
+		}
+		
+		//------------------------------------------------------------------------------------------------------------
 		
 
 	

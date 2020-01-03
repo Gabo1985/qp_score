@@ -66,7 +66,45 @@
 					});
 		}// FIN DE LA FUNCION DE INICIO
 		
+		setInterval('media()',10);
+		
+		//FUNCION CAMBIO DE PANTALLA PUBLICIDAD A TURNOS
+
+		
 	}
+</script>
+
+<script>
+function media() {
+	//http://chd-qsistems:8080/qp_score/rest/consultas/media
+	
+	$.ajax({    async: false,
+		type : "GET",
+		url : "http://chd-qsistems:8080/qp_score/rest/consultas/media",
+		contentType : "application/json; charset=utf-8",
+		dataType : "json",
+		success : function(response) {
+			$.each(response,function(index, product) {					
+				if(response[index].media== 0)			
+				{
+					//alert("1");
+					$('#div1').show();
+				}
+				else
+				{
+					//alert("0");
+					$('#div1').hide();
+					$('#div0').show();
+				}
+			}); // FIN EACH
+		},
+		error : function(response) {
+			console.log("error");
+		}
+	}); // AJAX
+} 
+
+	
 </script>
 
 <script>  	// NAVEGACION ENTRE DIV
@@ -78,7 +116,8 @@
 	}
 
 	function hideDiv(n) {
-		for (x = 1; x <= 10; x++) {
+		//CAMBIO DE 1 POR 0
+		for (x = 0; x <= 10; x++) {
 			document.getElementById("div" + x).style.display = 'none'
 		}
 		document.getElementById(n).style.display = 'block'
@@ -86,7 +125,9 @@
 	}
 
 	function toggleDiv(id) {
-		for (x = 1; x <= 3; x++) {
+		//CAMBIO DE 1 POR 0
+		for (x = 0; x <= 3; x++) {
+			//alert(x);
 			document.getElementById("div" + x).style.display = 'none';
 		}
 
@@ -94,7 +135,8 @@
 	}
 	
 	function returnCalificacion() {
-		toggleDiv("div1");
+		//CAMBIO DE DIV1 POR DIV0
+		toggleDiv("div0");
 		 $('#enviar').click();
 	}
 </script>  
@@ -343,7 +385,17 @@ function rutaO(id_marca) {
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align:center;">
 		<tr>
 			<td>
-				<div id="div1">
+<!-- 				PUBLICIDAD INICIAL -->
+				<div id="div0" style="display: none">
+					<center>
+						<video width=100%  height=100%  autoplay>
+    						<source src="video.mp4" type="video/mp4"> 
+             			 </video> 
+             			 
+					</center>
+				</div> 
+				<!-- 				PANTALLA DE CALIFICACION CONVENCIONAL -->				
+				<div id="div1" >
 					<table border=0 width=100% cellspacing="0" cellpadding="0" style="text-align:center;">
 						<tr>
 							<td colspan="5" align="center"><label id="mprincipal" name="mprincipal" value="">SIRVA CALIFICAR NUESTRA ATENCION</label></td>
@@ -372,6 +424,7 @@ function rutaO(id_marca) {
 					</table>
 				</div>
 
+<!-- 				PANTALLA PREGUNTAS OPCIONALES POR BOTON -->
 				<div id="div2" style="display: none">
 					<table border=0 width=100% cellspacing="0" cellpadding="0"text-align:center;>
 						<tr>
@@ -401,16 +454,10 @@ function rutaO(id_marca) {
 					</table>
 				</div>
 
-
+<!-- 				PANTALLA DE GRACIAS POR CALIFICAR -->
 				<div id="div3" style="display: none">
-					<table border=0 width=100% cellspacing="0" cellpadding="0"text-align:center;>
-						<tr>
-							<td>DIV</td>
-						</tr>
-						<tr>
-							<td>3</td>
-						</tr>
-					</table>
+<!-- 					lectura de imagen de gracias por backgroud -->
+
 				</div>
 
 			</td>
